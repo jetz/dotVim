@@ -2,10 +2,8 @@
         1. git clone https://github.com/jetz/dotVim.git ~/.vim
         2. ./init.sh
 
-**NOTE: ** If Windows，create _vimrc in $HOME，then in _vimrc：
+**NOTE: ** If Windows，change **.vim** to **vimfiles**
 
-        set rtp+=$PATH/dotVim
-        source $PATH/dotVim/.vimrc
         
 - [Ag](https://github.com/rking/ag.vim)
 - [Airline](https://github.com/bling/vim-airline)

@@ -344,7 +344,7 @@ let g:airline_right_alt_sep = '#'
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
     " 也可以是Unicode符号, 参见Airline
-    let g:airline_symbols.branch = '{b}'
+    let g:airline_symbols.branch = 'BR:'
     let g:airline_symbols.linenr = 'LN'
     let g:airline_symbols.readonly = 'RO'
     let g:airline_symbols.paste = '{p}'

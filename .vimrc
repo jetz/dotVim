@@ -284,8 +284,13 @@ vnoremap <leader>y "+y
 " ================================================================================
 filetype off
 
-set rtp+=~/.vim/bundle/Vundle
-call vundle#begin()
+if g:is_win == 1
+    set rtp+=~/vimfiles/bundle/Vundle
+    call vundle#begin('~/vimfiles/bundle')
+else
+    set rtp+=~/.vim/bundle/Vundle
+    call vundle#begin()
+endif
 
 Plugin 'gmarik/Vundle.vim', {'name': 'Vundle'}
 
@@ -383,10 +388,6 @@ let g:syntastic_check_on_open = 1                " 载入源文件时检查语�
 nnoremap <silent> <F4> :TagbarToggle<CR>
 
 let g:tagbar_width = 30
-
-if g:is_win == 1
-    let g:tagbar_ctags_bin = 'D:/Project/dotVim/misc/windows/ctags.exe'
-endif
 
 " ================================================================================
 " UltiSnips配置

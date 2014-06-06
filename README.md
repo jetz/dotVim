@@ -2,7 +2,7 @@
         1. git clone https://github.com/jetz/dotVim.git ~/.vim
         2. ./init.sh
 
-**NOTE: ** If Windows，change **.vim** to **vimfiles**
+**NOTE: ** If Windows，change `.vim` to `vimfiles`
 
         
 - [Ag](https://github.com/rking/ag.vim)
@@ -24,9 +24,9 @@
 - [UltiSnips](https://github.com/SirVer/ultisnips)
 - [Vundle](https://github.com/gmarik/Vundle.vim)
 - [YouCompleteMe](https://github.com/Valloric/YouCompleteMe)
-- [AutoComplPop*](https://github.com/vim-scripts/AutoComplPop)
-- [L9*](https://github.com/vim-scripts/L9)
-- [Jedi*](https://github.com/davidhalter/jedi-vim)
+- [AutoComplPop?](https://github.com/vim-scripts/AutoComplPop)
+- [L9?](https://github.com/vim-scripts/L9)
+- [Jedi?](https://github.com/davidhalter/jedi-vim)
 - [Bash](https://github.com/vim-scripts/bash-support.vim)
 - [Python](https://github.com/klen/python-mode)
 - [Lua](https://github.com/xolox/vim-lua-ftplugin)

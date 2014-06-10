@@ -314,6 +314,12 @@ Plugin 'SirVer/ultisnips', {'name': 'UltiSnips'}
 
 if g:is_win == 0 && (v:version > 703 || (v:version == 703 && has("patch584")))
     Plugin 'Valloric/YouCompleteMe', {'name': 'YouCompleteMe'}
+    " YCM配置
+    let g:ycm_complete_in_comments = 1           " 补全功能在注释中同样有效  
+    let g:ycm_min_num_of_chars_for_completion=1  " 从第一个键入字符开始罗列匹配项  
+    let g:ycm_key_invoke_completion = '<A-/>'    " 补全默认Ctrl+Space，改为Alt+/  
+    let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+    let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
 else
     Plugin 'vim-scripts/AutoComplPop', {'name': 'AutoComplPop'}
     Plugin 'vim-scripts/L9', {'name': 'L9'}
@@ -321,9 +327,10 @@ else
     Plugin 'davidhalter/jedi-vim', {'name': 'Jedi'}
     " Jedi配置
     let g:jedi#auto_vim_configuration = 0        " 不初始化completeopt
+    let g:jedi#popup_on_dot = 0                  " 输入.后不弹出补全菜单
     let g:jedi#popup_select_first = 0            " 输入.后不默认选取第一个选项
     let g:jedi#use_tabs_not_buffers = 0          " 查看函数定义时使用buffer
-
+    let g:jedi#completions_command = '<A-/>'
 endif
 
 Plugin 'vim-scripts/bash-support.vim', {'name': 'Bash'}
@@ -381,6 +388,7 @@ let NERDTreeIgnore=['\~$', '\.pyc$', '\.o$', '\.exe$']
 " Syntastic配置
 " ================================================================================
 let g:syntastic_check_on_open = 1                " 载入源文件时检查语法
+let g:syntastic_python_checkers = ['pylama']
 
 " ================================================================================
 " Tagbar配置
@@ -396,15 +404,13 @@ let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<S-tab>"
 
 " ================================================================================
-" YouCompleteMe配置
+" Markdown相关配置
 " ================================================================================
-let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
-let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
-let g:ycm_key_invoke_completion = '<A-/>'        " 补全默认Ctrl+Space，改为Alt+/  
-let g:ycm_complete_in_comments = 1               " 补全功能在注释中同样有效  
-let g:ycm_min_num_of_chars_for_completion=1      " 从第一个键入字符开始罗列匹配项  
-
-set completeopt-=preview                         " 补全内容不以分割子窗口形式出现
+augroup _FT_MARKDOWN
+    " 清除当前group中的autocmd，防止重复包含
+    autocmd!
+    autocmd BufRead,BufNewFile *.{md,mkd,markdown}   set filetype=markdown
+augroup END
 
 " ================================================================================
 " Bash相关配置
@@ -432,10 +438,10 @@ augroup _FT_PYTHON
     autocmd!
     " 自动修复PEP8错误
     autocmd FileType python nnoremap <buffer> <A-q> :PymodeLintAuto<CR>
+    " 补全内容不以分割子窗口形式出现
+    autocmd FileType python set completeopt-=preview
 augroup END
 
 let g:pymode_rope = 0                            " 关闭rope
 let g:pymode_folding = 0                         " 不自动折叠
-
-let g:pymode_lint_ignore = 'E501,'               " 忽略501错误
-let g:pymode_lint_checkers=['pep8', 'pyflakes']  " 不使用mccabe
+let g:pymode_lint_on_write = 0                   " 使用Syntastic来检查

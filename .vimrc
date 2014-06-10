@@ -438,6 +438,8 @@ augroup _FT_PYTHON
     autocmd!
     " 自动修复PEP8错误
     autocmd FileType python nnoremap <buffer> <A-q> :PymodeLintAuto<CR>
+    " 行尾添加 #noqa
+    autocmd FileType python nnoremap <buffer> <leader>nq :exec "norm! A # noqa"<CR>
     " 补全内容不以分割子窗口形式出现
     autocmd FileType python set completeopt-=preview
 augroup END

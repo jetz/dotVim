@@ -334,6 +334,7 @@ else
 endif
 
 Plugin 'vim-scripts/bash-support.vim', {'name': 'Bash'}
+Plugin 'maksimr/vim-jsbeautify', {'name': 'JSBeautify'}
 Plugin 'klen/python-mode', {'name': 'Pymode'}
 " For Lua {
 Plugin 'xolox/vim-lua-ftplugin', {'name': 'Lua'}
@@ -418,6 +419,27 @@ augroup END
 let g:BASH_MapLeader = '\'
 
 " ================================================================================
+" Web相关配置
+" ================================================================================
+augroup _FT_JS
+    autocmd!
+    autocmd FileType javascript nnoremap <buffer> <A-q> :call JsBeautify()<CR>
+    autocmd FileType javascript vnoremap <buffer> <A-q> :call RangeJsBeautify()<CR>
+augroup END
+
+augroup _FT_HTML
+    autocmd!
+    autocmd FileType html nnoremap <buffer> <A-q> :call HtmlBeautify()<CR>
+    autocmd FileType html vnoremap <buffer> <A-q> :call RangeHtmlBeautify()<CR>
+augroup END
+
+augroup _FT_CSS
+    autocmd!
+    autocmd FileType css nnoremap <buffer> <A-q> :call CSSBeautify()<CR>
+    autocmd FileType css vnoremap <buffer> <A-q> :call RangeCSSBeautify()<CR>
+augroup END
+
+" ================================================================================
 " Lua相关配置
 " ================================================================================
 augroup _FT_LUA
@@ -447,3 +469,5 @@ augroup END
 let g:pymode_rope = 0                            " 关闭rope
 let g:pymode_folding = 0                         " 不自动折叠
 let g:pymode_lint_on_write = 0                   " 使用Syntastic来检查
+
+

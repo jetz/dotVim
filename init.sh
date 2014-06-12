@@ -14,6 +14,9 @@ sudo ./vimcdoc.sh -i
 rm -rf ../vimcdoc-1.9.0
 cd $curpath
 
+echo ">>>>> Config JSBeautify..."
+sudo apt-get install nodejs
+
 echo ">>>>> Config YouCompleteMe..."
 sudo apt-get install build-essential cmake
 sudo apt-get install python-dev

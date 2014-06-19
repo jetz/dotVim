@@ -469,5 +469,4 @@ augroup END
 let g:pymode_rope = 0                            " 关闭rope
 let g:pymode_folding = 0                         " 不自动折叠
 let g:pymode_lint_on_write = 0                   " 使用Syntastic来检查
-
-
+let g:pymode_options_max_line_length = 0         " 不显示长度提示条

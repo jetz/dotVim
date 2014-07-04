@@ -97,6 +97,8 @@ let is_running=1
 set guioptions-=r                      " 去掉右边滚动条
 set guioptions-=m                      " 去掉菜单栏
 set guioptions-=T                      " 去除工具栏
+set completeopt-=preview               " 补全内容不以分割子窗口形式出现
+
 set nu                                 " 显示行号
 set ruler                              " 在编辑过程中,在右下角显示光标位置的状态行
 set cmdheight=1                        " 命令行(在状态行下)的高度,默认为1
@@ -296,9 +298,11 @@ Plugin 'gmarik/Vundle.vim', {'name': 'Vundle'}
 
 Plugin 'rking/ag.vim', {'name': 'Ag'}
 Plugin 'bling/vim-airline', {'name': 'Airline'}
+Plugin 'Chiel92/vim-autoformat', {'name': 'AutoFormat'}
 Plugin 'jlanzarotta/bufexplorer', {'name': 'BufExplorer'}
 Plugin 'kien/ctrlp.vim', {'name': 'CtrlP'}
 Plugin 'vim-scripts/DrawIt', {'name': 'DrawIt'}
+Plugin 'Lokaltog/vim-easymotion', {'name': 'EasyMotion'}
 Plugin 'mattn/emmet-vim', {'name': 'Emmet'}
 Plugin 'tpope/vim-fugitive', {'name': 'Fugitive'}
 Plugin 'terryma/vim-multiple-cursors', {'name': 'MultipleCursors'}
@@ -311,6 +315,7 @@ Plugin 'majutsushi/tagbar', {'name': 'TagBar'}
 Plugin 'Stormherz/tablify', {'name': 'Tablify'}
 Plugin 'godlygeek/tabular', {'name': 'Tabular'}
 Plugin 'SirVer/ultisnips', {'name': 'UltiSnips'}
+Plugin 'mbbill/undotree', {'name': 'UndoTree'}
 
 if g:is_win == 0 && (v:version > 703 || (v:version == 703 && has("patch584")))
     Plugin 'Valloric/YouCompleteMe', {'name': 'YouCompleteMe'}
@@ -334,12 +339,12 @@ else
 endif
 
 Plugin 'vim-scripts/bash-support.vim', {'name': 'Bash'}
-Plugin 'maksimr/vim-jsbeautify', {'name': 'JSBeautify'}
-Plugin 'klen/python-mode', {'name': 'Pymode'}
 " For Lua {
 Plugin 'xolox/vim-lua-ftplugin', {'name': 'Lua'}
 Plugin 'xolox/vim-misc', {'name': 'XoloxMisc'}
 "}
+
+" Plugin 'klen/python-mode', {'name': 'Pymode'}
 
 call vundle#end()
 
@@ -367,6 +372,11 @@ endif
 let g:airline_section_warning = ''
 
 let g:airline_theme = "simple"
+
+" ================================================================================
+" AutoFormat配置
+" ================================================================================
+nnoremap <silent> <A-q> :Autoformat<CR>
 
 " ================================================================================
 " BufExplorer配置
@@ -405,6 +415,20 @@ let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<S-tab>"
 
 " ================================================================================
+" UndoTree配置
+" ================================================================================
+nnoremap <silent> <F5> :UndotreeToggle<CR>
+
+if has("persistent_undo")
+    set undodir='~/.undodir/'
+    set undofile
+endif
+
+let g:undotree_WindowLayout = 3
+let g:undotree_SplitWidth = 30
+let g:undotree_SetFocusWhenToggle = 1
+
+" ================================================================================
 " Markdown相关配置
 " ================================================================================
 augroup _FT_MARKDOWN
@@ -419,31 +443,9 @@ augroup END
 let g:BASH_MapLeader = '\'
 
 " ================================================================================
-" Web相关配置
-" ================================================================================
-augroup _FT_JS
-    autocmd!
-    autocmd FileType javascript nnoremap <buffer> <A-q> :call JsBeautify()<CR>
-    autocmd FileType javascript vnoremap <buffer> <A-q> :call RangeJsBeautify()<CR>
-augroup END
-
-augroup _FT_HTML
-    autocmd!
-    autocmd FileType html nnoremap <buffer> <A-q> :call HtmlBeautify()<CR>
-    autocmd FileType html vnoremap <buffer> <A-q> :call RangeHtmlBeautify()<CR>
-augroup END
-
-augroup _FT_CSS
-    autocmd!
-    autocmd FileType css nnoremap <buffer> <A-q> :call CSSBeautify()<CR>
-    autocmd FileType css vnoremap <buffer> <A-q> :call RangeCSSBeautify()<CR>
-augroup END
-
-" ================================================================================
 " Lua相关配置
 " ================================================================================
 augroup _FT_LUA
-    " 清除当前group中的autocmd，防止重复包含
     autocmd!
     autocmd FileType lua setlocal sw=4
 augroup END
@@ -458,15 +460,6 @@ let g:lua_complete_dynamic = 0                   " 关闭.后自动补全(会自
 " ================================================================================
 augroup _FT_PYTHON
     autocmd!
-    " 自动修复PEP8错误
-    autocmd FileType python nnoremap <buffer> <A-q> :PymodeLintAuto<CR>
     " 行尾添加 #noqa
     autocmd FileType python nnoremap <buffer> <leader>nq :exec "norm! A # noqa"<CR>
-    " 补全内容不以分割子窗口形式出现
-    autocmd FileType python set completeopt-=preview
 augroup END
-
-let g:pymode_rope = 0                            " 关闭rope
-let g:pymode_folding = 0                         " 不自动折叠
-let g:pymode_lint_on_write = 0                   " 使用Syntastic来检查
-let g:pymode_options_max_line_length = 0         " 不显示长度提示条

@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+if [ ! -d bundle ]; then
+    mkdir bundle
+fi
+
 git clone https://github.com/gmarik/Vundle.vim.git bundle/Vundle
 
 echo ">>>>> Install Plugins..."

@@ -14,8 +14,13 @@ sudo ./vimcdoc.sh -i
 rm -rf ../vimcdoc-1.9.0
 cd $curpath
 
-echo ">>>>> Config JSBeautify..."
+echo ">>>>> Config Autoformat..."
+# for xhtml&xml
+sudo apt-get install tidy
+# for js&css&html(js-beautify)
 sudo apt-get install nodejs
+# for c&c++&c#
+sudo apt-get install astyle 
 
 echo ">>>>> Config YouCompleteMe..."
 sudo apt-get install build-essential cmake

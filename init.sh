@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
 
+oldpath=$(pwd)
+
 if [ ! -d bundle ]; then
-    mkdir bundle
+    cd ~/.vim
+    mkdir -p bundle
 fi
 
 git clone https://github.com/gmarik/Vundle.vim.git bundle/Vundle
@@ -10,13 +13,11 @@ echo ">>>>> Install Plugins..."
 vim +PluginInstall +qall
 
 echo ">>>>> Install Chinese doc..."
-curpath=$(pwd)
 cd ~/.vim/misc
 tar -xvf vimcdoc-1.9.0.tar.gz
 cd vimcdoc-1.9.0
 sudo ./vimcdoc.sh -i
 rm -rf ../vimcdoc-1.9.0
-cd $curpath
 
 echo ">>>>> Config Autoformat..."
 # for xhtml&xml
@@ -33,4 +34,4 @@ sudo apt-get install python-dev
 curpath=$(pwd)
 cd ~/.vim/bundle/YouCompleteMe
 ./install.sh --clang-completer
-cd $curpath
+cd $oldpath

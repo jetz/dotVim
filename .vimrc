@@ -251,7 +251,6 @@ nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
 " 将查找出来的所有结果显示在单独的窗口中，双击该行就能定位到文件中的相应行
 nnoremap <leader>/ :exec 'lvimgrep /' . input('/', expand('<cword>')) . '/j % <bar> lopen'<CR>
 
-
 " 把JJ映射成退出插入模式
 inoremap jj <ESC>
 
@@ -265,14 +264,11 @@ cnoremap <C-f> <right>
 cnoremap <C-n> <down>
 cnoremap <C-p> <up>
 
-" 命令模式下的粘帖
-cnoremap <leader>p<tab> <C-R>+
-cnoremap p<tab> <C-R>"
-
 " 使用sudo权限保存的文件
-cnoremap W<tab> w !sudo tee %
+cnoremap W<CR> w !sudo tee %<CR>
 
-cnoremap wd<tab> w ~/Desktop/
+" 复制系统剪贴板内容到命令行
+cnoremap <leader>p <C-R>+
 
 " 复制系统剪贴板内容到编辑器中
 nnoremap <leader>p "+p
@@ -280,6 +276,11 @@ nnoremap <leader>p "+p
 nnoremap <leader>y "+yy
 " visual模式下复制当前选定内容到系统剪贴板
 vnoremap <leader>y "+y
+
+" ================================================================================
+" 键简写设置
+" ================================================================================
+cnoreabbrev wd w ~/Desktop
 
 " ================================================================================
 " Vundle配置

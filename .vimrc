@@ -387,9 +387,9 @@ nnoremap <silent> <A-l> :BufExplorer<CR>
 " ================================================================================
 " EasyMotion配置
 " ================================================================================
-nmap f <Plug>(easymotion-f)
-nmap F <Plug>(easymotion-F)
-nmap s <Plug>(easymotion-s)
+nmap <leader>f <Plug>(easymotion-f)
+nmap <leader>F <Plug>(easymotion-F)
+nmap <leader>s <Plug>(easymotion-s)
 
 let g:EasyMotion_smartcase = 1
 

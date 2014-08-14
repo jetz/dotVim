@@ -56,6 +56,10 @@ func! RunCode()
         exec "!lua %<.lua"
     elseif &filetype == "python"
         exec "!python %<.py"
+    elseif &filetype == "perl"
+        exec "!perl %<.pl"
+    elseif &filetype == "sh"
+        exec "!bash %<.sh"
     endif
 endfunc
 

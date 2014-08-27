@@ -310,6 +310,8 @@ Plugin 'vim-scripts/DrawIt', {'name': 'DrawIt'}
 Plugin 'Lokaltog/vim-easymotion', {'name': 'EasyMotion'}
 Plugin 'mattn/emmet-vim', {'name': 'Emmet'}
 Plugin 'tpope/vim-fugitive', {'name': 'Fugitive'}
+Plugin 'mitsuhiko/vim-jinja', {'name': 'JinJa2'}
+Plugin 'vim-scripts/matchit.zip', {'name': 'MatchIt'}
 Plugin 'terryma/vim-multiple-cursors', {'name': 'MultipleCursors'}
 Plugin 'jetz/nerdcommenter', {'name': 'NERDCommenter'}
 Plugin 'scrooloose/nerdtree', {'name': 'NERDTree'}

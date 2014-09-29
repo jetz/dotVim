@@ -27,6 +27,16 @@ func! SwitchMenu()
     endif
 endfunc
 
+" 随机选择主题
+func! PickColorScheme()
+    let rand=localtime() % 2
+    if rand == 0
+        colorscheme molokai            " 设置背景颜色
+    else
+        colorscheme jellybeans         " 设置背景颜色
+    endif
+endfunc
+
 " 编译源文件
 func! CompileCode()
     exec "w"
@@ -78,7 +88,7 @@ func! EscaltConsole()
         set <HOME>=OH
         set <END>=OF
     endif
- endfunc
+endfunc
 
 " ================================================================================
 " 界面显示设置
@@ -94,8 +104,9 @@ if !exists("is_running")
     else
         call EscaltConsole()
     endif
-    colorscheme molokai                " 设置背景颜色
+    call PickColorScheme()
 endif
+
 let is_running=1
 
 set guioptions-=r                      " 去掉右边滚动条

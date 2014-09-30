@@ -102,6 +102,7 @@ if !exists("is_running")
         " F2显示菜单栏
         noremap <silent> <F2> :call SwitchMenu() <CR>
     else
+        set t_Co=256
         call EscaltConsole()
     endif
     call PickColorScheme()

@@ -13,11 +13,9 @@ echo ">>>>> Install Plugins..."
 vim +PluginInstall +qall
 
 echo ">>>>> Install Chinese doc..."
-cd ~/.vim/misc
-tar -xvf vimcdoc-1.9.0.tar.gz
-cd vimcdoc-1.9.0
-sudo ./vimcdoc.sh -i
-rm -rf ../vimcdoc-1.9.0
+cd ~/.vim && tar -xzf vimcdoc-1.9.0.tar.gz
+cd vimcdoc-1.9.0 && sudo ./vimcdoc.sh -i
+cd .. && rm -rf vimcdoc-1.9.0
 
 echo ">>>>> Config Autoformat..."
 # for xhtml&xml

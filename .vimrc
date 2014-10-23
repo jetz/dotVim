@@ -1,21 +1,4 @@
 " ================================================================================
-" 全局设定
-" ================================================================================
-let g:is_win = 0
-" 判断系统
-if (has("win32") || has("win64") || has("win32unix"))
-    let g:is_win = 1
-    source $VIMRUNTIME/mswin.vim
-    behave mswin
-    " F9还原窗口
-    noremap <silent> <F9> :simalt ~r <CR>
-    " F10最大化窗口
-    noremap <silent> <F10> :simalt ~x <CR>
-    " 启动后默认位置为桌面
-    cd ~/Desktop
-endif
-
-" ================================================================================
 " 自定义函数
 " ================================================================================
 " 控制菜单的显示与隐藏
@@ -57,11 +40,7 @@ func! RunCode()
     if &filetype == "vim"
         exec "source %<.vim"
     elseif &filetype == "c" || &filetype == "cpp"
-        if g:is_win == 1
-            exec "!%<"
-        else
-            exec "!./%<"
-        endif
+        exec "!./%<"
     elseif &filetype == "lua"
         exec "!lua %<.lua"
     elseif &filetype == "python"
@@ -143,13 +122,7 @@ set t_Co=256                           " 显示提示终端支持256色,以便�
 " 设置字符集编码，默认使用utf-8
 set encoding=utf-8                     " 状态栏乱码
 set fileencodings=utf-8,ucs-bom,chinese,gb18030,gbk,gb2312,cp936,shift-jis
-if g:is_win == 1
-    language messages zh_CN.UTF-8      " 解决状态栏显示文件名乱码以及Consle输出乱码
-    set guifont=Consolas:h11:cANSI     " 设置英文字体
-    set gfw=YaHei_Mono:h10:cGB2312     " 设置中文字体
-else
-    set guifont=Ubuntu\ Mono\ 12       " Ubuntu下设置字体及大小
-endif
+set guifont=Ubuntu\ Mono\ 12           " Ubuntu下设置字体及大小
 
 set fileformat=unix
 set fileencoding=utf-8
@@ -222,7 +195,6 @@ syntax on                              " 语法高亮
 " ================================================================================
 " 键映射设置
 " ================================================================================
-
 let mapleader=";"
 let maplocalleader=";"
 
@@ -236,6 +208,7 @@ nnoremap <silent> <A-n> :silent noh <CR>
 nnoremap <silent> <leader>ev :e $MYVIMRC<CR>
 " 重新读取配置文件
 nnoremap <silent> <leader>sv :source $MYVIMRC<CR>
+
 " 使用符号包围光标下面的字(中文多字)
 nnoremap <leader>" viw<ESC>`<i"<ESC>`>a"<ESC>h
 nnoremap <leader>' viw<ESC>`<i'<ESC>`>a'<ESC>h
@@ -252,7 +225,6 @@ nnoremap <leader>;< a><ESC>hi<<ESC>e
 nnoremap <leader>;( a)<ESC>hi(<ESC>e
 nnoremap <leader>;[ a]<ESC>hi[<ESC>e
 nnoremap <leader>;{ a}<ESC>hi{<ESC>e
-
 " 使用符号包围选择的字符
 vnoremap <leader>" <ESC>`<i"<ESC>`>a"<ESC>
 vnoremap <leader>' <ESC>`<i'<ESC>`>a'<ESC>
@@ -303,66 +275,51 @@ cnoreabbrev wd w ~/Desktop
 " ================================================================================
 filetype off
 
-if g:is_win == 1
-    set rtp+=~/vimfiles/bundle/Vundle
-    call vundle#begin('~/vimfiles/bundle')
-else
-    set rtp+=~/.vim/bundle/Vundle
-    call vundle#begin()
-endif
+set rtp+=~/.vim/bundle/Vundle
+call vundle#begin()
 
 Plugin 'gmarik/Vundle.vim', {'name': 'Vundle'}
 
-Plugin 'rking/ag.vim', {'name': 'Ag'}
+" >>>>>>>>>> Interface
 Plugin 'bling/vim-airline', {'name': 'Airline'}
-Plugin 'Chiel92/vim-autoformat', {'name': 'AutoFormat'}
-Plugin 'jlanzarotta/bufexplorer', {'name': 'BufExplorer'}
-Plugin 'kien/ctrlp.vim', {'name': 'CtrlP'}
-Plugin 'vim-scripts/DrawIt', {'name': 'DrawIt'}
-Plugin 'Lokaltog/vim-easymotion', {'name': 'EasyMotion'}
-Plugin 'mattn/emmet-vim', {'name': 'Emmet'}
-Plugin 'tpope/vim-fugitive', {'name': 'Fugitive'}
-Plugin 'mitsuhiko/vim-jinja', {'name': 'JinJa2'}
-Plugin 'vim-scripts/matchit.zip', {'name': 'MatchIt'}
-Plugin 'terryma/vim-multiple-cursors', {'name': 'MultipleCursors'}
-Plugin 'jetz/nerdcommenter', {'name': 'NERDCommenter'}
 Plugin 'scrooloose/nerdtree', {'name': 'NERDTree'}
-Plugin 'evanmiller/nginx-vim-syntax', {'name': 'Nginx'}
-Plugin 'jetz/vim-snippets', {'name': 'Snippets'}
-Plugin 'scrooloose/syntastic', {'name': 'Syntastic'}
 Plugin 'majutsushi/tagbar', {'name': 'TagBar'}
-Plugin 'Stormherz/tablify', {'name': 'Tablify'}
-Plugin 'godlygeek/tabular', {'name': 'Tabular'}
-Plugin 'SirVer/ultisnips', {'name': 'UltiSnips'}
+Plugin 'jlanzarotta/bufexplorer', {'name': 'BufExplorer'}
 Plugin 'mbbill/undotree', {'name': 'UndoTree'}
+Plugin 'tpope/vim-fugitive', {'name': 'Fugitive'}
 
-if g:is_win == 0 && (v:version > 703 || (v:version == 703 && has("patch584")))
-    Plugin 'Valloric/YouCompleteMe', {'name': 'YouCompleteMe'}
-    " YCM配置
-    let g:ycm_complete_in_comments = 1           " 补全功能在注释中同样有效  
-    let g:ycm_min_num_of_chars_for_completion=1  " 从第一个键入字符开始罗列匹配项  
-    let g:ycm_key_invoke_completion = '<A-/>'    " 补全默认Ctrl+Space，改为Alt+/  
-    let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
-    let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
-else
-    Plugin 'vim-scripts/AutoComplPop', {'name': 'AutoComplPop'}
-    Plugin 'vim-scripts/L9', {'name': 'L9'}
+" >>>>>>>>>> File
+Plugin 'rking/ag.vim', {'name': 'Ag'}
+Plugin 'kien/ctrlp.vim', {'name': 'CtrlP'}
 
-    Plugin 'davidhalter/jedi-vim', {'name': 'Jedi'}
-    " Jedi配置
-    let g:jedi#auto_vim_configuration = 0        " 不初始化completeopt
-    let g:jedi#popup_on_dot = 0                  " 输入.后不弹出补全菜单
-    let g:jedi#popup_select_first = 0            " 输入.后不默认选取第一个选项
-    let g:jedi#use_tabs_not_buffers = 0          " 查看函数定义时使用buffer
-    let g:jedi#completions_command = '<A-/>'
-endif
+" >>>>>>>>>> Text
+Plugin 'Chiel92/vim-autoformat', {'name': 'AutoFormat'}
+Plugin 'jetz/nerdcommenter', {'name': 'NERDCommenter'}
+Plugin 'godlygeek/tabular', {'name': 'Tabular'}
+Plugin 'Stormherz/tablify', {'name': 'Tablify'}
+Plugin 'vim-scripts/DrawIt', {'name': 'DrawIt'}
 
+Plugin 'terryma/vim-multiple-cursors', {'name': 'MultipleCursors'}
+Plugin 'Lokaltog/vim-easymotion', {'name': 'EasyMotion'}
+Plugin 'vim-scripts/matchit.zip', {'name': 'MatchIt'}
+
+" >>>>>>>>>> Syntax
+Plugin 'scrooloose/syntastic', {'name': 'Syntastic'}
+Plugin 'Valloric/YouCompleteMe', {'name': 'YouCompleteMe'}
+
+" >>>>>>>>>> Snippet
+Plugin 'SirVer/ultisnips', {'name': 'UltiSnips'}
+Plugin 'jetz/vim-snippets', {'name': 'Snippets'}
+Plugin 'mattn/emmet-vim', {'name': 'Emmet'}
+
+" >>>>>>>>>> FileType
+Plugin 'mitsuhiko/vim-jinja', {'name': 'JinJa2'}
+Plugin 'evanmiller/nginx-vim-syntax', {'name': 'Nginx'}
 Plugin 'vim-scripts/bash-support.vim', {'name': 'Bash'}
-" For Lua {
+" Lua {
 Plugin 'xolox/vim-lua-ftplugin', {'name': 'Lua'}
 Plugin 'xolox/vim-misc', {'name': 'XoloxMisc'}
 "}
-
 " Plugin 'klen/python-mode', {'name': 'Pymode'}
 
 call vundle#end()
@@ -393,14 +350,40 @@ let g:airline_section_warning = ''
 let g:airline_theme = "simple"
 
 " ================================================================================
-" AutoFormat配置
+" NERDTree配置
 " ================================================================================
-nnoremap <silent> <A-q> :Autoformat<CR>
+nnoremap <silent> <F3> :NERDTreeToggle<CR>
+let NERDTreeIgnore=['\~$', '\.pyc$', '\.o$', '\.exe$']
+
+" ================================================================================
+" Tagbar配置
+" ================================================================================
+nnoremap <silent> <F4> :TagbarToggle<CR>
+let g:tagbar_width = 30
 
 " ================================================================================
 " BufExplorer配置
 " ================================================================================
 nnoremap <silent> <A-l> :BufExplorer<CR>
+
+" ================================================================================
+" UndoTree配置
+" ================================================================================
+nnoremap <silent> <F5> :UndotreeToggle<CR>
+
+if has("persistent_undo")
+    set undodir='~/.undodir/'
+    set undofile
+endif
+
+let g:undotree_WindowLayout = 3
+let g:undotree_SplitWidth = 30
+let g:undotree_SetFocusWhenToggle = 1
+
+" ================================================================================
+" AutoFormat配置
+" ================================================================================
+nnoremap <silent> <A-q> :Autoformat<CR>
 
 " ================================================================================
 " EasyMotion配置
@@ -417,11 +400,13 @@ let g:EasyMotion_smartcase = 1
 let NERDMapleader = ';c'
 
 " ================================================================================
-" NERDTree配置
+" YCM配置
 " ================================================================================
-nnoremap <silent> <F3> :NERDTreeToggle<CR>
-
-let NERDTreeIgnore=['\~$', '\.pyc$', '\.o$', '\.exe$']
+let g:ycm_complete_in_comments = 1           " 补全功能在注释中同样有效  
+let g:ycm_min_num_of_chars_for_completion=1  " 从第一个键入字符开始罗列匹配项  
+let g:ycm_key_invoke_completion = '<A-/>'    " 补全默认Ctrl+Space，改为Alt+/  
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
 
 " ================================================================================
 " Syntastic配置
@@ -430,31 +415,10 @@ let g:syntastic_check_on_open = 1                " 载入源文件时检查语�
 let g:syntastic_python_checkers = ['pylama']
 
 " ================================================================================
-" Tagbar配置
-" ================================================================================
-nnoremap <silent> <F4> :TagbarToggle<CR>
-
-let g:tagbar_width = 30
-
-" ================================================================================
 " UltiSnips配置
 " ================================================================================
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<S-tab>"
-
-" ================================================================================
-" UndoTree配置
-" ================================================================================
-nnoremap <silent> <F5> :UndotreeToggle<CR>
-
-if has("persistent_undo")
-    set undodir='~/.undodir/'
-    set undofile
-endif
-
-let g:undotree_WindowLayout = 3
-let g:undotree_SplitWidth = 30
-let g:undotree_SetFocusWhenToggle = 1
 
 " ================================================================================
 " Markdown相关配置

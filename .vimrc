@@ -203,11 +203,15 @@ nnoremap <silent> <A-c> :call CompileCode()<CR>
 " 一键保存、运行
 nnoremap <silent> <A-r> :call RunCode()<CR>
 " 清除高亮显示
-nnoremap <silent> <A-n> :silent noh <CR>
+nnoremap <silent> <A-n> :silent noh<CR>
 " 读取配置文件
 nnoremap <silent> <leader>ev :e $MYVIMRC<CR>
 " 重新读取配置文件
 nnoremap <silent> <leader>sv :source $MYVIMRC<CR>
+
+" 分屏
+nnoremap <silent> <leader>- :split<CR>
+nnoremap <silent> <leader>\ :vsplit<CR>
 
 " 使用符号包围光标下面的字(中文多字)
 nnoremap <leader>" viw<ESC>`<i"<ESC>`>a"<ESC>h

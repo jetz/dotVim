@@ -43,12 +43,14 @@ func! RunCode()
         exec "!./%<"
     elseif &filetype == "lua"
         exec "!lua %<.lua"
+    elseif &filetype == "sh"
+        exec "!bash %<.sh"
     elseif &filetype == "python"
         exec "!python %<.py"
     elseif &filetype == "perl"
         exec "!perl %<.pl"
-    elseif &filetype == "sh"
-        exec "!bash %<.sh"
+    elseif &filetype == "php"
+        exec "!php %<.php"
     endif
 endfunc
 
@@ -324,6 +326,7 @@ Plugin 'vim-scripts/bash-support.vim', {'name': 'Bash'}
 Plugin 'xolox/vim-lua-ftplugin', {'name': 'Lua'}
 Plugin 'xolox/vim-misc', {'name': 'XoloxMisc'}
 "}
+Plugin 'ekalinin/Dockerfile.vim', {'name': 'Dockerfile'}
 " Plugin 'klen/python-mode', {'name': 'Pymode'}
 
 call vundle#end()

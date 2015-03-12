@@ -12,11 +12,13 @@ endfunc
 
 " 随机选择主题
 func! PickColorScheme()
-    let rand=localtime() % 2
+    let rand=localtime() % 3
     if rand == 0
         colorscheme molokai            " 设置背景颜色
-    else
+    elseif rand == 1
         colorscheme jellybeans         " 设置背景颜色
+    else
+        colorscheme peaksea            " 设置背景颜色
     endif
 endfunc
 
@@ -105,6 +107,7 @@ set helplang=cn                        " 中文帮助
 
 set laststatus=2                       " 总是显示状态行
 set t_Co=256                           " 显示提示终端支持256色,以便正常显示状态栏
+set background=dark                    " 设置背景为暗色
 
 
 " ================================================================================

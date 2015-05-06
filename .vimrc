@@ -296,6 +296,7 @@ Plugin 'majutsushi/tagbar', {'name': 'TagBar'}
 Plugin 'jlanzarotta/bufexplorer', {'name': 'BufExplorer'}
 Plugin 'mbbill/undotree', {'name': 'UndoTree'}
 Plugin 'tpope/vim-fugitive', {'name': 'Fugitive'}
+Plugin 'airblade/vim-gitgutter', {'name': 'GitGutter'}
 
 " >>>>>>>>>> File
 Plugin 'rking/ag.vim', {'name': 'Ag'}
@@ -318,10 +319,11 @@ Plugin 'Valloric/YouCompleteMe', {'name': 'YouCompleteMe'}
 
 " >>>>>>>>>> Snippet
 Plugin 'SirVer/ultisnips', {'name': 'UltiSnips'}
-Plugin 'jetz/vim-snippets', {'name': 'Snippets'}
+Plugin 'honza/vim-snippets', {'name': 'Snippets'}
 Plugin 'mattn/emmet-vim', {'name': 'Emmet'}
 
 " >>>>>>>>>> FileType
+Plugin 'marijnh/tern_for_vim', {'name': 'TernJS'}
 Plugin 'mitsuhiko/vim-jinja', {'name': 'JinJa2'}
 Plugin 'evanmiller/nginx-vim-syntax', {'name': 'Nginx'}
 Plugin 'vim-scripts/bash-support.vim', {'name': 'Bash'}

@@ -425,6 +425,16 @@ let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
 " ================================================================================
 let g:syntastic_check_on_open = 1                " 载入源文件时检查语法
 let g:syntastic_python_checkers = ['pylama']
+let g:syntastic_c_checkers = ['gcc']
+let g:syntastic_go_checkers = ['gofmt']
+let g:syntastic_javascript_checkers = ['jshint']
+let g:syntastic_html_checkers = ['jshint']
+let g:syntastic_css_checkers = ['csslint']
+let g:syntastic_json_checkers = ['jsonlint']
+let g:syntastic_php_checkers = ['php']
+let g:syntastic_sh_checkers = ['sh']
+let g:syntastic_enable_perl_checker = 1
+let g:syntastic_perl_checkers = ['perl']
 
 " ================================================================================
 " UltiSnips配置

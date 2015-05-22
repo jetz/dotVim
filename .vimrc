@@ -323,6 +323,7 @@ Plugin 'honza/vim-snippets', {'name': 'Snippets'}
 Plugin 'mattn/emmet-vim', {'name': 'Emmet'}
 
 " >>>>>>>>>> FileType
+Plugin 'fatih/vim-go', {'name': 'Go'}
 Plugin 'marijnh/tern_for_vim', {'name': 'TernJS'}
 Plugin 'mitsuhiko/vim-jinja', {'name': 'JinJa2'}
 Plugin 'evanmiller/nginx-vim-syntax', {'name': 'Nginx'}
@@ -477,3 +478,18 @@ augroup _FT_PYTHON
     " 行尾添加 #noqa
     autocmd FileType python nnoremap <buffer> <leader>nq :exec "norm! A # noqa"<CR>
 augroup END
+
+" ================================================================================
+" Go相关配置
+" ================================================================================
+augroup _FT_GO
+    autocmd!
+    autocmd FileType go nnoremap <buffer> <A-r> :GoRun <CR>
+    autocmd FileType go nnoremap <buffer> <A-c> :GoBuild <CR>
+augroup END
+
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1

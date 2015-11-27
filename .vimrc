@@ -484,6 +484,7 @@ augroup END
 " ================================================================================
 augroup _FT_GO
     autocmd!
+    autocmd FileType go setlocal ts=4
     autocmd FileType go nnoremap <buffer> <A-r> :GoRun <CR>
     autocmd FileType go nnoremap <buffer> <A-c> :GoBuild <CR>
 augroup END

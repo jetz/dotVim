@@ -290,7 +290,8 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim', {'name': 'Vundle'}
 
 " >>>>>>>>>> Interface
-Plugin 'bling/vim-airline', {'name': 'Airline'}
+Plugin 'vim-airline/vim-airline', {'name': 'Airline'}
+Plugin 'vim-airline/vim-airline-themes', {'name': 'AirlineThemes'}
 Plugin 'scrooloose/nerdtree', {'name': 'NERDTree'}
 Plugin 'majutsushi/tagbar', {'name': 'TagBar'}
 Plugin 'jlanzarotta/bufexplorer', {'name': 'BufExplorer'}

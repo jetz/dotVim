@@ -196,6 +196,8 @@ set fillchars=vert:\ ,stl:\ ,stlnc:\   " 在被分割的窗口间显示空白，
 set sessionoptions+=resize,unix,slash  " 恢复session时恢复窗口大小,兼容Windows与*nix
 
 syntax on                              " 语法高亮
+filetype plugin indent on              " 类型检测、特定类型插件、类型缩进都开启
+
 
 " ================================================================================
 " 键映射设置
@@ -282,64 +284,54 @@ cnoreabbrev wd w ~/Desktop
 " ================================================================================
 " Vundle配置
 " ================================================================================
-filetype off
-
-set rtp+=~/.vim/bundle/Vundle
-call vundle#begin()
-
-Plugin 'gmarik/Vundle.vim', {'name': 'Vundle'}
+call plug#begin('~/.vim/plugged')
 
 " >>>>>>>>>> Interface
-Plugin 'vim-airline/vim-airline', {'name': 'Airline'}
-Plugin 'vim-airline/vim-airline-themes', {'name': 'AirlineThemes'}
-Plugin 'scrooloose/nerdtree', {'name': 'NERDTree'}
-Plugin 'majutsushi/tagbar', {'name': 'TagBar'}
-Plugin 'jlanzarotta/bufexplorer', {'name': 'BufExplorer'}
-Plugin 'mbbill/undotree', {'name': 'UndoTree'}
-Plugin 'tpope/vim-fugitive', {'name': 'Fugitive'}
-Plugin 'airblade/vim-gitgutter', {'name': 'GitGutter'}
+Plug 'vim-airline/vim-airline', {'as': 'Airline'}
+Plug 'vim-airline/vim-airline-themes', {'as': 'AirlineThemes'}
+Plug 'scrooloose/nerdtree', {'as': 'NERDTree'}
+Plug 'majutsushi/tagbar', {'as': 'TagBar'}
+Plug 'jlanzarotta/bufexplorer', {'as': 'BufExplorer'}
+Plug 'mbbill/undotree', {'as': 'UndoTree'}
+Plug 'tpope/vim-fugitive', {'as': 'Fugitive'}
+Plug 'airblade/vim-gitgutter', {'as': 'GitGutter'}
 
 " >>>>>>>>>> File
-Plugin 'rking/ag.vim', {'name': 'Ag'}
-Plugin 'kien/ctrlp.vim', {'name': 'CtrlP'}
+Plug 'rking/ag.vim', {'as': 'Ag'}
+Plug 'ctrlpvim/ctrlp.vim', {'as': 'CtrlP'}
 
 " >>>>>>>>>> Text
-Plugin 'Chiel92/vim-autoformat', {'name': 'AutoFormat'}
-Plugin 'jetz/nerdcommenter', {'name': 'NERDCommenter'}
-Plugin 'godlygeek/tabular', {'name': 'Tabular'}
-Plugin 'Stormherz/tablify', {'name': 'Tablify'}
-Plugin 'vim-scripts/DrawIt', {'name': 'DrawIt'}
+Plug 'Chiel92/vim-autoformat', {'as': 'AutoFormat'}
+Plug 'jetz/nerdcommenter', {'as': 'NERDCommenter'}
+Plug 'godlygeek/tabular', {'as': 'Tabular'}
+Plug 'Stormherz/tablify', {'as': 'Tablify'}
+Plug 'vim-scripts/DrawIt', {'as': 'DrawIt'}
 
-Plugin 'terryma/vim-multiple-cursors', {'name': 'MultipleCursors'}
-Plugin 'Lokaltog/vim-easymotion', {'name': 'EasyMotion'}
-Plugin 'vim-scripts/matchit.zip', {'name': 'MatchIt'}
+Plug 'terryma/vim-multiple-cursors', {'as': 'MultipleCursors'}
+Plug 'Lokaltog/vim-easymotion', {'as': 'EasyMotion'}
+Plug 'vim-scripts/matchit.zip', {'as': 'MatchIt'}
 
 " >>>>>>>>>> Syntax
-Plugin 'scrooloose/syntastic', {'name': 'Syntastic'}
-Plugin 'Valloric/YouCompleteMe', {'name': 'YouCompleteMe'}
+Plug 'scrooloose/syntastic', {'as': 'Syntastic'}
+Plug 'Valloric/YouCompleteMe', { 'as': 'YouCompleteMe'}
 
 " >>>>>>>>>> Snippet
-Plugin 'SirVer/ultisnips', {'name': 'UltiSnips'}
-Plugin 'honza/vim-snippets', {'name': 'Snippets'}
-Plugin 'mattn/emmet-vim', {'name': 'Emmet'}
+Plug 'SirVer/ultisnips', {'as': 'UltiSnips'}
+Plug 'honza/vim-snippets', {'as': 'Snippets'}
+Plug 'mattn/emmet-vim', {'as': 'Emmet'}
 
 " >>>>>>>>>> FileType
-Plugin 'fatih/vim-go', {'name': 'Go'}
-Plugin 'marijnh/tern_for_vim', {'name': 'TernJS'}
-Plugin 'mitsuhiko/vim-jinja', {'name': 'JinJa2'}
-Plugin 'evanmiller/nginx-vim-syntax', {'name': 'Nginx'}
-Plugin 'vim-scripts/bash-support.vim', {'name': 'Bash'}
+Plug 'fatih/vim-go', {'as': 'Go'}
+Plug 'mitsuhiko/vim-jinja', {'as': 'JinJa2'}
+Plug 'evanmiller/nginx-vim-syntax', {'as': 'Nginx'}
+Plug 'vim-scripts/bash-support.vim', {'as': 'Bash'}
 " Lua {
-Plugin 'xolox/vim-lua-ftplugin', {'name': 'Lua'}
-Plugin 'xolox/vim-misc', {'name': 'XoloxMisc'}
+Plug 'xolox/vim-lua-ftplugin', {'as': 'Lua'}
+Plug 'xolox/vim-misc', {'as': 'XoloxMisc'}
 "}
-Plugin 'ekalinin/Dockerfile.vim', {'name': 'Dockerfile'}
-" Plugin 'klen/python-mode', {'name': 'Pymode'}
+Plug 'ekalinin/Dockerfile.vim', {'as': 'Dockerfile'}
 
-call vundle#end()
-
-" 类型检测、特定类型插件、类型缩进都开启
-filetype plugin indent on
+call plug#end()
 
 " ================================================================================
 " Airline配置

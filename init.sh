@@ -1,35 +1,24 @@
 #!/usr/bin/env bash
 
-oldpath=$(pwd)
+echo ">>>>> Install YouCompleteMe Deps..."
+sudo apt-get install build-essential cmake python-dev
 
-if [ ! -d bundle ]; then
-    cd ~/.vim
-    mkdir -p bundle
-fi
+echo ">>>>> Install Autoformat Deps..."
+sudo apt-get install golang-go
+sudo apt-get install clang-format
+sudo apt-get install python-autopep8
 
-git clone https://github.com/gmarik/Vundle.vim.git bundle/Vundle
+sudo apt-get install nodejs
+sudo npm install -g js-beautify
+sudo npm install -g css-beautify
+sudo npm install -g html-beautify
+
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 echo ">>>>> Install Plugins..."
-vim +PluginInstall +qall
+vim +PlugInstall +qall
 
 echo ">>>>> Install Chinese doc..."
 cd ~/.vim && tar -xzf vimcdoc-1.9.0.tar.gz
 cd vimcdoc-1.9.0 && sudo ./vimcdoc.sh -i
 cd .. && rm -rf vimcdoc-1.9.0
-
-echo ">>>>> Config Autoformat..."
-# for xhtml&xml
-sudo apt-get install tidy
-# for js&css&html(js-beautify)
-sudo apt-get install nodejs
-# for c&c++&c#
-sudo apt-get install astyle 
-
-echo ">>>>> Config YouCompleteMe..."
-sudo apt-get install build-essential cmake
-sudo apt-get install python-dev
-
-curpath=$(pwd)
-cd ~/.vim/bundle/YouCompleteMe
-./install.sh --clang-completer
-cd $oldpath

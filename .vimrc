@@ -32,7 +32,7 @@ func! CompileCode()
     elseif &filetype == "lua"
         exec "!luac %<.lua"
     elseif &filetype == "python"
-        exec "!python -m %<.py"
+        exec "!python3 -m %<.py"
     endif
 endfunc
 
@@ -48,7 +48,7 @@ func! RunCode()
     elseif &filetype == "sh"
         exec "!bash %<.sh"
     elseif &filetype == "python"
-        exec "!python %<.py"
+        exec "!python3 %<.py"
     elseif &filetype == "perl"
         exec "!perl %<.pl"
     elseif &filetype == "php"
@@ -127,7 +127,7 @@ set background=dark                    " 设置背景为暗色
 " 设置字符集编码，默认使用utf-8
 set encoding=utf-8                     " 状态栏乱码
 set fileencodings=utf-8,ucs-bom,chinese,gb18030,gbk,gb2312,cp936,shift-jis
-set guifont=Ubuntu\ Mono\ 12           " Ubuntu下设置字体及大小
+" set guifont=Ubuntu\ Mono\ 12           " Ubuntu下设置字体及大小
 
 set fileformat=unix
 set fileencoding=utf-8
@@ -330,6 +330,7 @@ Plug 'xolox/vim-lua-ftplugin', {'as': 'Lua'}
 Plug 'xolox/vim-misc', {'as': 'XoloxMisc'}
 "}
 Plug 'ekalinin/Dockerfile.vim', {'as': 'Dockerfile'}
+Plug 'solarnz/thrift.vim', {'as': 'Thrift'}
 
 call plug#end()
 
@@ -359,7 +360,7 @@ let g:airline_theme = "simple"
 " NERDTree配置
 " ================================================================================
 nnoremap <silent> <F3> :NERDTreeToggle<CR>
-let NERDTreeIgnore=['\~$', '\.pyc$', '\.o$', '\.exe$']
+let NERDTreeIgnore=['\~$', '\.pyc$', '\.o$', '\.exe$', '^__pycache__$[[dir]]']
 
 " ================================================================================
 " Tagbar配置

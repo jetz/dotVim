@@ -312,7 +312,7 @@ Plug 'Lokaltog/vim-easymotion', {'as': 'EasyMotion'}
 Plug 'vim-scripts/matchit.zip', {'as': 'MatchIt'}
 
 " >>>>>>>>>> Syntax
-Plug 'scrooloose/syntastic', {'as': 'Syntastic'}
+Plug 'vim-syntastic/syntastic', {'as': 'Syntastic'}
 Plug 'Valloric/YouCompleteMe', { 'as': 'YouCompleteMe'}
 
 " >>>>>>>>>> Snippet
@@ -326,8 +326,8 @@ Plug 'mitsuhiko/vim-jinja', {'as': 'JinJa2'}
 Plug 'evanmiller/nginx-vim-syntax', {'as': 'Nginx'}
 Plug 'vim-scripts/bash-support.vim', {'as': 'Bash'}
 " Lua {
-Plug 'xolox/vim-lua-ftplugin', {'as': 'Lua'}
-Plug 'xolox/vim-misc', {'as': 'XoloxMisc'}
+" Plug 'xolox/vim-lua-ftplugin', {'as': 'Lua'}
+" Plug 'xolox/vim-misc', {'as': 'XoloxMisc'}
 "}
 Plug 'ekalinin/Dockerfile.vim', {'as': 'Dockerfile'}
 Plug 'solarnz/thrift.vim', {'as': 'Thrift'}
@@ -479,10 +479,12 @@ augroup END
 augroup _FT_GO
     autocmd!
     autocmd FileType go setlocal ts=4
+    autocmd FileType go nnoremap <buffer> <A-d> :GoDoc <CR>
     autocmd FileType go nnoremap <buffer> <A-r> :GoRun <CR>
     autocmd FileType go nnoremap <buffer> <A-c> :GoBuild <CR>
 augroup END
 
+let g:go_bin_path = '/app/gopath/bin'
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
 let g:go_highlight_structs = 1

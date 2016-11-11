@@ -392,6 +392,16 @@ let g:undotree_SetFocusWhenToggle = 1
 " ================================================================================
 nnoremap <silent> <A-q> :Autoformat<CR>
 
+let g:formatters_python = ['autopep8', 'yapf']
+let g:formatters_go = ['gofmt_1']
+let g:formatters_c = ['clangformat']
+let g:formatters_cpp = ['clangformat']
+let g:formatters_javascript = ['jsbeautify_javascript', 'standard_javascript']
+let g:formatters_html = ['htmlbeautify']
+let g:formatters_css = ['cssbeautify']
+let g:formatters_json = ['jsbeautify_json']
+let g:formatters_markdown = ['remark_markdown']
+
 " ================================================================================
 " EasyMotion配置
 " ================================================================================

@@ -331,6 +331,7 @@ Plug 'vim-scripts/bash-support.vim', {'as': 'Bash'}
 "}
 Plug 'ekalinin/Dockerfile.vim', {'as': 'Dockerfile'}
 Plug 'solarnz/thrift.vim', {'as': 'Thrift'}
+Plug 'rodjek/vim-puppet', {'as': 'Puppet'}
 
 call plug#end()
 

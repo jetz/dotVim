@@ -1,17 +1,25 @@
 #!/usr/bin/env bash
 
+DISTRO="Ubuntu"
+INSTALL="sudo apt install -y"
+
+if [[ -f /etc/redhat-release ]]; then
+    DISTRO="Redhat"
+    INSTALL="sudo yum install -y"
+fi
+
+
 echo ">>>>> Install YouCompleteMe Deps..."
-sudo apt-get install build-essential cmake python-dev
+if [[ $DISTRO == "Ubuntu" ]]; then
+    $INSTALL build-essential cmake python-dev
+fi
 
 echo ">>>>> Install Autoformat Deps..."
-sudo apt-get install golang-go
-sudo apt-get install clang-format
-sudo apt-get install python-autopep8
+$INSTALL nodejs golang clang
 
-sudo apt-get install nodejs
+sudo pip install autopep8
 sudo npm install -g js-beautify
-sudo npm install -g css-beautify
-sudo npm install -g html-beautify
+
 
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 

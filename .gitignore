@@ -167,3 +167,10 @@ pip-log.txt
 #############
 autoload/
 plugged/
+
+############
+# Vimdoc
+############
+doc/
+plugin/
+syntax/

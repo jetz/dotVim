@@ -28,5 +28,5 @@ vim +PlugInstall +qall
 
 echo ">>>>> Install Chinese doc..."
 cd ~/.vim && tar -xzf vimcdoc-1.9.0.tar.gz
-cd vimcdoc-1.9.0 && sudo ./vimcdoc.sh -i
+cd vimcdoc-1.9.0 && ./vimcdoc.sh -i
 cd .. && rm -rf vimcdoc-1.9.0

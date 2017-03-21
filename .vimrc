@@ -80,8 +80,8 @@ endfunc
 if !exists("is_running")
     " 判断是终端还是Gvim
     if has("gui_running")
-        winpos 250 0                   " 窗体起始位置
-        set lines=55 columns=105       " 行列，窗口大小
+        winpos 330 0                   " 窗体起始位置
+        set lines=50 columns=100       " 行列，窗口大小
         " F2显示菜单栏
         noremap <silent> <F2> :call SwitchMenu() <CR>
     else
@@ -128,6 +128,7 @@ set background=dark                    " 设置背景为暗色
 set encoding=utf-8                     " 状态栏乱码
 set fileencodings=utf-8,ucs-bom,chinese,gb18030,gbk,gb2312,cp936,shift-jis
 " set guifont=Ubuntu\ Mono\ 12           " Ubuntu下设置字体及大小
+set guifont=Monaco:h14
 
 set fileformat=unix
 set fileencoding=utf-8
@@ -496,7 +497,7 @@ augroup _FT_GO
     autocmd FileType go nnoremap <buffer> <M-c> :GoBuild <CR>
 augroup END
 
-let g:go_bin_path = '/opt/gopath/bin'
+let g:go_bin_path = '/Users/jetz/Library/GoPath/bin'
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
 let g:go_highlight_structs = 1

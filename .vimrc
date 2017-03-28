@@ -206,11 +206,11 @@ let mapleader=";"
 let maplocalleader=";"
 
 " 一键保存、编译
-nnoremap <silent> <A-c> :call CompileCode()<CR>
+nnoremap <silent> <M-c> :call CompileCode()<CR>
 " 一键保存、运行
-nnoremap <silent> <A-r> :call RunCode()<CR>
+nnoremap <silent> <M-r> :call RunCode()<CR>
 " 清除高亮显示
-nnoremap <silent> <A-n> :silent noh<CR>
+nnoremap <silent> <M-n> :silent noh<CR>
 " 读取配置文件
 nnoremap <silent> <leader>ev :e $MYVIMRC<CR>
 " 重新读取配置文件
@@ -372,7 +372,7 @@ let g:tagbar_width = 30
 " ================================================================================
 " BufExplorer配置
 " ================================================================================
-nnoremap <silent> <A-l> :BufExplorer<CR>
+nnoremap <silent> <M-l> :BufExplorer<CR>
 
 " ================================================================================
 " UndoTree配置
@@ -391,7 +391,7 @@ let g:undotree_SetFocusWhenToggle = 1
 " ================================================================================
 " AutoFormat配置
 " ================================================================================
-nnoremap <silent> <A-q> :Autoformat<CR>
+nnoremap <silent> <M-q> :Autoformat<CR>
 
 let g:formatters_python = ['autopep8', 'yapf']
 let g:formatters_go = ['gofmt_1']
@@ -422,7 +422,7 @@ let NERDMapleader = ';c'
 " ================================================================================
 let g:ycm_complete_in_comments = 1           " 补全功能在注释中同样有效  
 let g:ycm_min_num_of_chars_for_completion=1  " 从第一个键入字符开始罗列匹配项  
-let g:ycm_key_invoke_completion = '<A-/>'    " 补全默认Ctrl+Space，改为Alt+/  
+let g:ycm_key_invoke_completion = '<M-/>'    " 补全默认Ctrl+Space，改为Alt+/  
 let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
 
@@ -490,12 +490,12 @@ augroup END
 augroup _FT_GO
     autocmd!
     autocmd FileType go setlocal ts=4
-    autocmd FileType go nnoremap <buffer> <A-d> :GoDoc <CR>
-    autocmd FileType go nnoremap <buffer> <A-r> :GoRun <CR>
-    autocmd FileType go nnoremap <buffer> <A-c> :GoBuild <CR>
+    autocmd FileType go nnoremap <buffer> <M-d> :GoDoc <CR>
+    autocmd FileType go nnoremap <buffer> <M-r> :GoRun <CR>
+    autocmd FileType go nnoremap <buffer> <M-c> :GoBuild <CR>
 augroup END
 
-let g:go_bin_path = '/app/gopath/bin'
+let g:go_bin_path = '/opt/gopath/bin'
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
 let g:go_highlight_structs = 1

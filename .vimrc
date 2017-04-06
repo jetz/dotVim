@@ -302,7 +302,7 @@ Plug 'ctrlpvim/ctrlp.vim', {'as': 'CtrlP'}
 
 " >>>>>>>>>> Text
 Plug 'Chiel92/vim-autoformat', {'as': 'AutoFormat'}
-Plug 'jetz/nerdcommenter', {'as': 'NERDCommenter'}
+Plug 'scrooloose/nerdcommenter', {'as': 'NERDCommenter'}
 Plug 'godlygeek/tabular', {'as': 'Tabular'}
 Plug 'Stormherz/tablify', {'as': 'Tablify'}
 Plug 'vim-scripts/DrawIt', {'as': 'DrawIt'}
@@ -317,7 +317,7 @@ Plug 'Valloric/YouCompleteMe', { 'as': 'YouCompleteMe'}
 
 " >>>>>>>>>> Snippet
 Plug 'SirVer/ultisnips', {'as': 'UltiSnips'}
-Plug 'honza/vim-snippets', {'as': 'Snippets'}
+Plug 'jetz/vim-snippets', {'as': 'Snippets'}
 Plug 'mattn/emmet-vim', {'as': 'Emmet'}
 
 " >>>>>>>>>> FileType

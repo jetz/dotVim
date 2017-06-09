@@ -314,6 +314,7 @@ Plug 'vim-scripts/matchit.zip', {'as': 'MatchIt'}
 " >>>>>>>>>> Syntax
 Plug 'vim-syntastic/syntastic', {'as': 'Syntastic'}
 Plug 'Valloric/YouCompleteMe', { 'as': 'YouCompleteMe'}
+Plug 'cespare/vim-toml', {'as': 'Toml'}
 
 " >>>>>>>>>> Snippet
 Plug 'SirVer/ultisnips', {'as': 'UltiSnips'}
@@ -360,13 +361,13 @@ let g:airline_theme = "simple"
 " ================================================================================
 " NERDTree配置
 " ================================================================================
-nnoremap <silent> <F3> :NERDTreeToggle<CR>
+nnoremap <silent> <leader>1 :NERDTreeToggle<CR>
 let NERDTreeIgnore=['\~$', '\.pyc$', '\.o$', '\.exe$', '^__pycache__$[[dir]]']
 
 " ================================================================================
 " Tagbar配置
 " ================================================================================
-nnoremap <silent> <F4> :TagbarToggle<CR>
+nnoremap <silent> <leader>0 :TagbarToggle<CR>
 let g:tagbar_width = 30
 
 " ================================================================================
@@ -377,7 +378,7 @@ nnoremap <silent> <M-l> :BufExplorer<CR>
 " ================================================================================
 " UndoTree配置
 " ================================================================================
-nnoremap <silent> <F5> :UndotreeToggle<CR>
+nnoremap <silent> <leader>9 :UndotreeToggle<CR>
 
 if has("persistent_undo")
     set undodir='~/.undodir/'

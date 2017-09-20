@@ -292,7 +292,6 @@ Plug 'vim-airline/vim-airline-themes', {'as': 'AirlineThemes'}
 Plug 'scrooloose/nerdtree', {'as': 'NERDTree'}
 Plug 'majutsushi/tagbar', {'as': 'TagBar'}
 Plug 'jlanzarotta/bufexplorer', {'as': 'BufExplorer'}
-Plug 'mbbill/undotree', {'as': 'UndoTree'}
 Plug 'tpope/vim-fugitive', {'as': 'Fugitive'}
 Plug 'airblade/vim-gitgutter', {'as': 'GitGutter'}
 
@@ -303,34 +302,27 @@ Plug 'ctrlpvim/ctrlp.vim', {'as': 'CtrlP'}
 " >>>>>>>>>> Text
 Plug 'Chiel92/vim-autoformat', {'as': 'AutoFormat'}
 Plug 'scrooloose/nerdcommenter', {'as': 'NERDCommenter'}
-Plug 'godlygeek/tabular', {'as': 'Tabular'}
 Plug 'Stormherz/tablify', {'as': 'Tablify'}
-Plug 'vim-scripts/DrawIt', {'as': 'DrawIt'}
 
-Plug 'terryma/vim-multiple-cursors', {'as': 'MultipleCursors'}
 Plug 'Lokaltog/vim-easymotion', {'as': 'EasyMotion'}
 Plug 'vim-scripts/matchit.zip', {'as': 'MatchIt'}
 
 " >>>>>>>>>> Syntax
-Plug 'vim-syntastic/syntastic', {'as': 'Syntastic'}
+" Plug 'vim-syntastic/syntastic', {'as': 'Syntastic'}
+Plug 'w0rp/ale', {'as': 'Ale'}
 Plug 'Valloric/YouCompleteMe', { 'as': 'YouCompleteMe'}
-Plug 'cespare/vim-toml', {'as': 'Toml'}
 
 " >>>>>>>>>> Snippet
 Plug 'SirVer/ultisnips', {'as': 'UltiSnips'}
 Plug 'jetz/vim-snippets', {'as': 'Snippets'}
-Plug 'mattn/emmet-vim', {'as': 'Emmet'}
 
 " >>>>>>>>>> FileType
 Plug 'fatih/vim-go', {'as': 'Go'}
-Plug 'mitsuhiko/vim-jinja', {'as': 'JinJa2'}
-Plug 'evanmiller/nginx-vim-syntax', {'as': 'Nginx'}
 Plug 'vim-scripts/bash-support.vim', {'as': 'Bash'}
-" Lua {
-" Plug 'xolox/vim-lua-ftplugin', {'as': 'Lua'}
-" Plug 'xolox/vim-misc', {'as': 'XoloxMisc'}
-"}
 Plug 'ekalinin/Dockerfile.vim', {'as': 'Dockerfile'}
+Plug 'evanmiller/nginx-vim-syntax', {'as': 'Nginx'}
+Plug 'mitsuhiko/vim-jinja', {'as': 'JinJa2'}
+Plug 'cespare/vim-toml', {'as': 'Toml'}
 Plug 'solarnz/thrift.vim', {'as': 'Thrift'}
 Plug 'rodjek/vim-puppet', {'as': 'Puppet'}
 
@@ -349,14 +341,16 @@ if !exists('g:airline_symbols')
     " 也可以是Unicode符号, 参见Airline
     let g:airline_symbols.branch = 'BR:'
     let g:airline_symbols.linenr = 'LN'
+    let g:airline_symbols.maxlinenr = ''
     let g:airline_symbols.readonly = 'RO'
     let g:airline_symbols.paste = '{p}'
     let g:airline_symbols.whitespace = ''
 endif
 
+let g:airline_theme = "simple"
 let g:airline_section_warning = ''
 
-let g:airline_theme = "simple"
+let g:airline#extensions#ale#enabled = 1
 
 " ================================================================================
 " NERDTree配置
@@ -374,20 +368,6 @@ let g:tagbar_width = 30
 " BufExplorer配置
 " ================================================================================
 nnoremap <silent> <M-l> :BufExplorer<CR>
-
-" ================================================================================
-" UndoTree配置
-" ================================================================================
-nnoremap <silent> <leader>9 :UndotreeToggle<CR>
-
-if has("persistent_undo")
-    set undodir='~/.undodir/'
-    set undofile
-endif
-
-let g:undotree_WindowLayout = 3
-let g:undotree_SplitWidth = 30
-let g:undotree_SetFocusWhenToggle = 1
 
 " ================================================================================
 " AutoFormat配置
@@ -421,27 +401,35 @@ let NERDMapleader = ';c'
 " ================================================================================
 " YCM配置
 " ================================================================================
-let g:ycm_complete_in_comments = 1           " 补全功能在注释中同样有效  
-let g:ycm_min_num_of_chars_for_completion=1  " 从第一个键入字符开始罗列匹配项  
-let g:ycm_key_invoke_completion = '<M-/>'    " 补全默认Ctrl+Space，改为Alt+/  
+let g:ycm_complete_in_comments = 1             " 补全功能在注释中同样有效  
+let g:ycm_min_num_of_chars_for_completion = 1  " 从第一个键入字符开始罗列匹配项  
+let g:ycm_key_invoke_completion = '<M-/>'      " 补全默认Ctrl+Space，改为Alt+/  
 let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
 
 " ================================================================================
 " Syntastic配置
 " ================================================================================
-let g:syntastic_check_on_open = 1                " 载入源文件时检查语法
-let g:syntastic_python_checkers = ['pylama']
-let g:syntastic_c_checkers = ['clang_check']
-let g:syntastic_go_checkers = ['golint']
-let g:syntastic_javascript_checkers = ['jshint']
-let g:syntastic_html_checkers = ['jshint']
-let g:syntastic_css_checkers = ['csslint']
-let g:syntastic_json_checkers = ['jsonlint']
-let g:syntastic_php_checkers = ['php']
-let g:syntastic_sh_checkers = ['sh']
-let g:syntastic_enable_perl_checker = 1
-let g:syntastic_perl_checkers = ['perl']
+" let g:syntastic_check_on_open = 1                " 载入源文件时检查语法
+" let g:syntastic_python_checkers = ['pylama']
+" let g:syntastic_c_checkers = ['clang_check']
+" let g:syntastic_go_checkers = ['golint']
+" let g:syntastic_javascript_checkers = ['jshint']
+" let g:syntastic_html_checkers = ['jshint']
+" let g:syntastic_css_checkers = ['csslint']
+" let g:syntastic_json_checkers = ['jsonlint']
+" let g:syntastic_php_checkers = ['php']
+" let g:syntastic_sh_checkers = ['sh']
+" let g:syntastic_enable_perl_checker = 1
+" let g:syntastic_perl_checkers = ['perl']
+ 
+" ================================================================================
+" ALE配置
+" ================================================================================
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+
+nmap sp <Plug>(ale_previous_wrap)
+nmap sn <Plug>(ale_next_wrap)
 
 " ================================================================================
 " UltiSnips配置
@@ -470,11 +458,6 @@ augroup _FT_LUA
     autocmd!
     autocmd FileType lua setlocal sw=4
 augroup END
-
-let g:lua_check_syntax = 1                       " 实时检查语法
-
-let g:lua_complete_omni = 1                      " 开启Lua的C-x C-o补全
-let g:lua_complete_dynamic = 0                   " 关闭.后自动补全(会自动选第一个)
 
 " ================================================================================
 " Python相关配置

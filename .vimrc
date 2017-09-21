@@ -295,36 +295,36 @@ Plug 'jlanzarotta/bufexplorer', {'as': 'BufExplorer'}
 Plug 'tpope/vim-fugitive', {'as': 'Fugitive'}
 Plug 'airblade/vim-gitgutter', {'as': 'GitGutter'}
 
-" >>>>>>>>>> File
+" >>>>>>>>>> Search
 Plug 'rking/ag.vim', {'as': 'Ag'}
 Plug 'ctrlpvim/ctrlp.vim', {'as': 'CtrlP'}
 
 " >>>>>>>>>> Text
-Plug 'Chiel92/vim-autoformat', {'as': 'AutoFormat'}
-Plug 'scrooloose/nerdcommenter', {'as': 'NERDCommenter'}
 Plug 'Stormherz/tablify', {'as': 'Tablify'}
-
+Plug 'scrooloose/nerdcommenter', {'as': 'NERDCommenter'}
 Plug 'Lokaltog/vim-easymotion', {'as': 'EasyMotion'}
 Plug 'vim-scripts/matchit.zip', {'as': 'MatchIt'}
 
 " >>>>>>>>>> Syntax
 " Plug 'vim-syntastic/syntastic', {'as': 'Syntastic'}
 Plug 'w0rp/ale', {'as': 'Ale'}
+Plug 'Chiel92/vim-autoformat', {'as': 'AutoFormat'}
 Plug 'Valloric/YouCompleteMe', { 'as': 'YouCompleteMe'}
+
 
 " >>>>>>>>>> Snippet
 Plug 'SirVer/ultisnips', {'as': 'UltiSnips'}
 Plug 'jetz/vim-snippets', {'as': 'Snippets'}
 
 " >>>>>>>>>> FileType
-Plug 'fatih/vim-go', {'as': 'Go'}
-Plug 'vim-scripts/bash-support.vim', {'as': 'Bash'}
-Plug 'ekalinin/Dockerfile.vim', {'as': 'Dockerfile'}
-Plug 'evanmiller/nginx-vim-syntax', {'as': 'Nginx'}
-Plug 'mitsuhiko/vim-jinja', {'as': 'JinJa2'}
-Plug 'cespare/vim-toml', {'as': 'Toml'}
+Plug 'fatih/vim-go', {'dir': '~/.vim/plugged/Languages/Go'}
+Plug 'vim-scripts/bash-support.vim', {'dir': '~/.vim/plugged/Languages/Bash'}
 Plug 'solarnz/thrift.vim', {'as': 'Thrift'}
+Plug 'cespare/vim-toml', {'as': 'Toml'}
 Plug 'rodjek/vim-puppet', {'as': 'Puppet'}
+Plug 'mitsuhiko/vim-jinja', {'as': 'JinJa2'}
+Plug 'chr4/nginx.vim', {'as': 'Nginx'}
+Plug 'ekalinin/Dockerfile.vim', {'as': 'Docker'}
 
 call plug#end()
 

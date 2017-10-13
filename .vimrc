@@ -311,12 +311,15 @@ Plug 'w0rp/ale', {'as': 'Ale'}
 Plug 'Chiel92/vim-autoformat', {'as': 'AutoFormat'}
 Plug 'Valloric/YouCompleteMe', { 'as': 'YouCompleteMe'}
 
-
 " >>>>>>>>>> Snippet
 Plug 'SirVer/ultisnips', {'as': 'UltiSnips'}
 Plug 'jetz/vim-snippets', {'as': 'Snippets'}
 
 " >>>>>>>>>> FileType
+" Lua {
+Plug 'xolox/vim-misc', {'dir': '~/.vim/plugged/Languages/LuaMisc'}
+Plug 'xolox/vim-lua-ftplugin', {'dir': '~/.vim/plugged/Languages/Lua'}
+"}
 Plug 'fatih/vim-go', {'dir': '~/.vim/plugged/Languages/Go'}
 Plug 'vim-scripts/bash-support.vim', {'dir': '~/.vim/plugged/Languages/Bash'}
 Plug 'solarnz/thrift.vim', {'as': 'Thrift'}
@@ -458,6 +461,11 @@ augroup _FT_LUA
     autocmd!
     autocmd FileType lua setlocal sw=4
 augroup END
+
+let g:lua_check_syntax = 1                       " 实时检查语法
+
+let g:lua_complete_omni = 1                      " 开启Lua的C-x C-o补全
+let g:lua_complete_dynamic = 0                   " 关闭.后自动补全(会自动选第一个)
 
 " ================================================================================
 " Python相关配置

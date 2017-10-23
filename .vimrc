@@ -306,10 +306,9 @@ Plug 'Lokaltog/vim-easymotion', {'as': 'EasyMotion'}
 Plug 'vim-scripts/matchit.zip', {'as': 'MatchIt'}
 
 " >>>>>>>>>> Syntax
-" Plug 'vim-syntastic/syntastic', {'as': 'Syntastic'}
 Plug 'w0rp/ale', {'as': 'Ale'}
+Plug 'maralla/completor.vim', { 'as': 'Completor'}
 Plug 'Chiel92/vim-autoformat', {'as': 'AutoFormat'}
-Plug 'Valloric/YouCompleteMe', { 'as': 'YouCompleteMe'}
 
 " >>>>>>>>>> Snippet
 Plug 'SirVer/ultisnips', {'as': 'UltiSnips'}
@@ -401,31 +400,6 @@ let g:EasyMotion_smartcase = 1
 " ================================================================================
 let NERDMapleader = ';c'
 
-" ================================================================================
-" YCM配置
-" ================================================================================
-let g:ycm_complete_in_comments = 1             " 补全功能在注释中同样有效  
-let g:ycm_min_num_of_chars_for_completion = 1  " 从第一个键入字符开始罗列匹配项  
-let g:ycm_key_invoke_completion = '<M-/>'      " 补全默认Ctrl+Space，改为Alt+/  
-let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
-let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
-
-" ================================================================================
-" Syntastic配置
-" ================================================================================
-" let g:syntastic_check_on_open = 1                " 载入源文件时检查语法
-" let g:syntastic_python_checkers = ['pylama']
-" let g:syntastic_c_checkers = ['clang_check']
-" let g:syntastic_go_checkers = ['golint']
-" let g:syntastic_javascript_checkers = ['jshint']
-" let g:syntastic_html_checkers = ['jshint']
-" let g:syntastic_css_checkers = ['csslint']
-" let g:syntastic_json_checkers = ['jsonlint']
-" let g:syntastic_php_checkers = ['php']
-" let g:syntastic_sh_checkers = ['sh']
-" let g:syntastic_enable_perl_checker = 1
-" let g:syntastic_perl_checkers = ['perl']
- 
 " ================================================================================
 " ALE配置
 " ================================================================================

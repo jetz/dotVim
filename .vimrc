@@ -358,7 +358,7 @@ let g:airline#extensions#ale#enabled = 1
 " NERDTree配置
 " ================================================================================
 nnoremap <silent> <leader>1 :NERDTreeToggle<CR>
-let NERDTreeIgnore=['\~$', '\.pyc$', '\.o$', '\.exe$', '^__pycache__$[[dir]]']
+let NERDTreeIgnore=['\~$', '\.pyc$', '\.o$', '\.exe$', '^__pycache__$[[dir]]', '^node_modules$[[dir]]']
 
 " ================================================================================
 " Tagbar配置

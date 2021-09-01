@@ -289,8 +289,8 @@ call plug#begin('~/.vim/plugged')
 " >>>>>>>>>> Interface
 Plug 'vim-airline/vim-airline', {'as': 'Airline'}
 Plug 'vim-airline/vim-airline-themes', {'as': 'AirlineThemes'}
-Plug 'scrooloose/nerdtree', {'as': 'NERDTree'}
-Plug 'majutsushi/tagbar', {'as': 'TagBar'}
+Plug 'preservim/nerdtree', {'as': 'NERDTree'}
+Plug 'preservim/tagbar', {'as': 'TagBar'}
 Plug 'jlanzarotta/bufexplorer', {'as': 'BufExplorer'}
 Plug 'tpope/vim-fugitive', {'as': 'Fugitive'}
 Plug 'airblade/vim-gitgutter', {'as': 'GitGutter'}
@@ -300,19 +300,19 @@ Plug 'rking/ag.vim', {'as': 'Ag'}
 Plug 'ctrlpvim/ctrlp.vim', {'as': 'CtrlP'}
 
 " >>>>>>>>>> Text
-Plug 'Stormherz/tablify', {'as': 'Tablify'}
-Plug 'scrooloose/nerdcommenter', {'as': 'NERDCommenter'}
-Plug 'Lokaltog/vim-easymotion', {'as': 'EasyMotion'}
-Plug 'vim-scripts/matchit.zip', {'as': 'MatchIt'}
+Plug 'stormherz/tablify', {'as': 'Tablify'}
+Plug 'preservim/nerdcommenter', {'as': 'NERDCommenter'}
+Plug 'easymotion/vim-easymotion', {'as': 'EasyMotion'}
+Plug 'andymass/vim-matchup', {'as': 'MatchUP'}
 
 " >>>>>>>>>> Syntax
-Plug 'w0rp/ale', {'as': 'Ale'}
+Plug 'dense-analysis/ale', {'as': 'Ale'}
 Plug 'maralla/completor.vim', { 'as': 'Completor'}
-Plug 'Chiel92/vim-autoformat', {'as': 'AutoFormat'}
+Plug 'vim-autoformat/vim-autoformat', {'as': 'AutoFormat'}
 
 " >>>>>>>>>> Snippet
 Plug 'SirVer/ultisnips', {'as': 'UltiSnips'}
-Plug 'jetz/vim-snippets', {'as': 'Snippets'}
+Plug 'honza/vim-snippets', {'as': 'Snippets'}
 
 " >>>>>>>>>> FileType
 " Lua {
@@ -320,11 +320,9 @@ Plug 'xolox/vim-misc', {'dir': '~/.vim/plugged/Languages/LuaMisc'}
 Plug 'xolox/vim-lua-ftplugin', {'dir': '~/.vim/plugged/Languages/Lua'}
 "}
 Plug 'fatih/vim-go', {'dir': '~/.vim/plugged/Languages/Go'}
-Plug 'vim-scripts/bash-support.vim', {'dir': '~/.vim/plugged/Languages/Bash'}
 Plug 'solarnz/thrift.vim', {'as': 'Thrift'}
 Plug 'cespare/vim-toml', {'as': 'Toml'}
-Plug 'rodjek/vim-puppet', {'as': 'Puppet'}
-Plug 'mitsuhiko/vim-jinja', {'as': 'JinJa2'}
+Plug 'lepture/vim-jinja', {'as': 'JinJa2'}
 Plug 'chr4/nginx.vim', {'as': 'Nginx'}
 Plug 'ekalinin/Dockerfile.vim', {'as': 'Docker'}
 
@@ -447,8 +445,11 @@ let g:lua_complete_dynamic = 0                   " 关闭.后自动补全(会自
 augroup _FT_PYTHON
     autocmd!
     " 行尾添加 #noqa
+    autocmd FileType python setlocal ts=4
     autocmd FileType python nnoremap <buffer> <leader>nq :exec "norm! A # noqa"<CR>
 augroup END
+
+let g:completor_python_binary = '/opt/python3/bin/python3'
 
 " ================================================================================
 " Go相关配置

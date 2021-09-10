@@ -109,6 +109,7 @@ set laststatus=2                       " 总是显示状态行
 set t_Co=256                           " 显示提示终端支持256色,以便正常显示状态栏
 set background=dark                    " 设置背景为暗色
 
+set updatetime=300                     " 减少更新时间，提升体验
 
 " ================================================================================
 " 字体编码设置
@@ -164,6 +165,7 @@ set et sts=4 sw=4
 
 set history=50                         " 历史记录数
 set nobackup                           " 禁止生成临时文件
+set nowritebackup
 set noswapfile                         " 禁止生成交换文件
 set ignorecase smartcase               " 搜索忽略大小写,内容包含大写字母时,不忽略大小写,否则忽略
 set hlsearch incsearch                 " 高亮,搜索逐字符高亮
@@ -286,45 +288,25 @@ cnoreabbrev wd w ~/Desktop
 " ================================================================================
 call plug#begin('~/.vim/plugged')
 
-" >>>>>>>>>> Interface
-Plug 'vim-airline/vim-airline', {'as': 'Airline'}
-Plug 'vim-airline/vim-airline-themes', {'as': 'AirlineThemes'}
-Plug 'preservim/nerdtree', {'as': 'NERDTree'}
-Plug 'preservim/tagbar', {'as': 'TagBar'}
-Plug 'jlanzarotta/bufexplorer', {'as': 'BufExplorer'}
-Plug 'tpope/vim-fugitive', {'as': 'Fugitive'}
-Plug 'airblade/vim-gitgutter', {'as': 'GitGutter'}
-
-" >>>>>>>>>> Search
-Plug 'rking/ag.vim', {'as': 'Ag'}
-Plug 'ctrlpvim/ctrlp.vim', {'as': 'CtrlP'}
-
-" >>>>>>>>>> Text
-Plug 'stormherz/tablify', {'as': 'Tablify'}
-Plug 'preservim/nerdcommenter', {'as': 'NERDCommenter'}
-Plug 'easymotion/vim-easymotion', {'as': 'EasyMotion'}
-Plug 'andymass/vim-matchup', {'as': 'MatchUP'}
-
-" >>>>>>>>>> Syntax
-Plug 'dense-analysis/ale', {'as': 'Ale'}
-Plug 'maralla/completor.vim', { 'as': 'Completor'}
-Plug 'vim-autoformat/vim-autoformat', {'as': 'AutoFormat'}
-
-" >>>>>>>>>> Snippet
-Plug 'SirVer/ultisnips', {'as': 'UltiSnips'}
-Plug 'honza/vim-snippets', {'as': 'Snippets'}
-
-" >>>>>>>>>> FileType
-" Lua {
-Plug 'xolox/vim-misc', {'dir': '~/.vim/plugged/Languages/LuaMisc'}
-Plug 'xolox/vim-lua-ftplugin', {'dir': '~/.vim/plugged/Languages/Lua'}
-"}
-Plug 'fatih/vim-go', {'dir': '~/.vim/plugged/Languages/Go'}
-Plug 'solarnz/thrift.vim', {'as': 'Thrift'}
-Plug 'cespare/vim-toml', {'as': 'Toml'}
-Plug 'lepture/vim-jinja', {'as': 'JinJa2'}
-Plug 'chr4/nginx.vim', {'as': 'Nginx'}
-Plug 'ekalinin/Dockerfile.vim', {'as': 'Docker'}
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'jlanzarotta/bufexplorer'
+Plug 'preservim/nerdtree'
+Plug 'preservim/tagbar'
+Plug 'stormherz/tablify'
+Plug 'preservim/nerdcommenter'
+Plug 'ryanoasis/vim-devicons'
+Plug 'sheerun/vim-polyglot'
+Plug 'andymass/vim-matchup'
+Plug 'airblade/vim-gitgutter'
+Plug 'easymotion/vim-easymotion'
+Plug 'sirver/ultisnips'
+Plug 'honza/vim-snippets'
+Plug 'dense-analysis/ale'
+Plug 'vim-autoformat/vim-autoformat'
+Plug 'junegunn/fzf', {'as': 'fzf', 'dir': 'fzf/fzf'}
+Plug 'junegunn/fzf.vim', {'as': 'fzf.vim', 'dir': 'fzf/fzf.vim'}
+Plug 'neoclide/coc.nvim', {'as': 'coc', 'do': 'yarn install --frozen-lockfile'}
 
 call plug#end()
 
@@ -353,6 +335,12 @@ let g:airline_section_warning = ''
 let g:airline#extensions#ale#enabled = 1
 
 " ================================================================================
+" FZF 配置
+" ================================================================================
+nnoremap <C-s> :Rg<CR>
+nnoremap <C-p> :Files<CR>
+
+" ================================================================================
 " NERDTree配置
 " ================================================================================
 nnoremap <silent> <leader>1 :NERDTreeToggle<CR>
@@ -373,15 +361,17 @@ nnoremap <silent> <M-l> :BufExplorer<CR>
 " AutoFormat配置
 " ================================================================================
 nnoremap <silent> <M-q> :Autoformat<CR>
+vnoremap <silent> <M-q> :Autoformat<CR>
 
-let g:formatters_python = ['autopep8', 'yapf']
-let g:formatters_go = ['gofmt_1']
+let g:formatters_python = ['black']
+let g:formatters_go = ['gofmt_1', 'goimports']
 let g:formatters_c = ['clangformat']
-let g:formatters_cpp = ['clangformat']
-let g:formatters_javascript = ['jsbeautify_javascript', 'standard_javascript']
+let g:formatters_lua = ['luafmt']
+let g:formatters_json = ['fixjson']
+let g:formatters_javascript = ['jsbeautify_javascript']
 let g:formatters_html = ['htmlbeautify']
 let g:formatters_css = ['cssbeautify']
-let g:formatters_json = ['jsbeautify_json']
+let g:formatters_sql = ['sqlformat']
 let g:formatters_markdown = ['remark_markdown']
 
 " ================================================================================
@@ -422,22 +412,12 @@ augroup _FT_MARKDOWN
 augroup END
 
 " ================================================================================
-" Bash相关配置
-" ================================================================================
-let g:BASH_MapLeader = '\'
-
-" ================================================================================
 " Lua相关配置
 " ================================================================================
 augroup _FT_LUA
     autocmd!
     autocmd FileType lua setlocal sw=4
 augroup END
-
-let g:lua_check_syntax = 1                       " 实时检查语法
-
-let g:lua_complete_omni = 1                      " 开启Lua的C-x C-o补全
-let g:lua_complete_dynamic = 0                   " 关闭.后自动补全(会自动选第一个)
 
 " ================================================================================
 " Python相关配置
@@ -449,22 +429,10 @@ augroup _FT_PYTHON
     autocmd FileType python nnoremap <buffer> <leader>nq :exec "norm! A # noqa"<CR>
 augroup END
 
-let g:completor_python_binary = '/opt/python3/bin/python3'
-
 " ================================================================================
 " Go相关配置
 " ================================================================================
 augroup _FT_GO
     autocmd!
     autocmd FileType go setlocal ts=4
-    autocmd FileType go nnoremap <buffer> <M-d> :GoDoc <CR>
-    autocmd FileType go nnoremap <buffer> <M-r> :GoRun <CR>
-    autocmd FileType go nnoremap <buffer> <M-c> :GoBuild <CR>
 augroup END
-
-let g:go_bin_path = '/opt/gopath/bin'
-let g:go_highlight_functions = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_structs = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_build_constraints = 1

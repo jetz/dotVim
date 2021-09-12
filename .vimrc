@@ -293,8 +293,10 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'jlanzarotta/bufexplorer'
 Plug 'preservim/nerdtree'
 Plug 'preservim/tagbar'
-Plug 'stormherz/tablify'
 Plug 'preservim/nerdcommenter'
+Plug 'stormherz/tablify'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
 Plug 'ryanoasis/vim-devicons'
 Plug 'sheerun/vim-polyglot'
 Plug 'andymass/vim-matchup'
@@ -304,8 +306,8 @@ Plug 'sirver/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'dense-analysis/ale'
 Plug 'vim-autoformat/vim-autoformat'
-Plug 'junegunn/fzf', {'as': 'fzf', 'dir': 'fzf/fzf'}
-Plug 'junegunn/fzf.vim', {'as': 'fzf.vim', 'dir': 'fzf/fzf.vim'}
+Plug 'junegunn/fzf', {'as': 'fzf', 'dir': '~/.vim/plugged/fzf/fzf'}
+Plug 'junegunn/fzf.vim', {'as': 'fzf.vim', 'dir': '~/.vim/plugged/fzf/fzf.vim'}
 Plug 'neoclide/coc.nvim', {'as': 'coc', 'do': 'yarn install --frozen-lockfile'}
 
 call plug#end()
@@ -333,12 +335,6 @@ let g:airline_theme = "simple"
 let g:airline_section_warning = ''
 
 let g:airline#extensions#ale#enabled = 1
-
-" ================================================================================
-" FZF 配置
-" ================================================================================
-nnoremap <C-s> :Rg<CR>
-nnoremap <C-p> :Files<CR>
 
 " ================================================================================
 " NERDTree配置
@@ -377,9 +373,9 @@ let g:formatters_markdown = ['remark_markdown']
 " ================================================================================
 " EasyMotion配置
 " ================================================================================
-nmap <leader>f <Plug>(easymotion-f)
-nmap <leader>F <Plug>(easymotion-F)
-nmap <leader>s <Plug>(easymotion-s)
+nnoremap <leader>f <Plug>(easymotion-f)
+nnoremap <leader>F <Plug>(easymotion-F)
+nnoremap <leader>s <Plug>(easymotion-s)
 
 let g:EasyMotion_smartcase = 1
 
@@ -391,16 +387,39 @@ let NERDMapleader = ';c'
 " ================================================================================
 " ALE配置
 " ================================================================================
+let g:ale_c_parse_makefile = 1
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 
-nmap sp <Plug>(ale_previous_wrap)
-nmap sn <Plug>(ale_next_wrap)
+nnoremap sp <Plug>(ale_previous_wrap)
+nnoremap sn <Plug>(ale_next_wrap)
+
+" ================================================================================
+" FZF 配置
+" ================================================================================
+nnoremap <C-s> :Rg<CR>
+nnoremap <C-p> :Files<CR>
 
 " ================================================================================
 " UltiSnips配置
 " ================================================================================
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<S-tab>"
+
+" ================================================================================
+" Coc配置
+" ================================================================================
+let g:coc_global_extensions = [
+            \ "coc-jedi",
+            \ "coc-go",
+            \ "coc-tsserver",
+            \ "coc-clangd",
+            \ "coc-lua",
+            \ "coc-vetur",
+            \ "coc-html",
+            \ "coc-css",
+            \ "coc-json",
+            \ "coc-yaml",
+            \ "coc-vimlsp"]
 
 " ================================================================================
 " Markdown相关配置

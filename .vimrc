@@ -281,6 +281,7 @@ Plug 'sirver/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'dense-analysis/ale'
 Plug 'vim-autoformat/vim-autoformat'
+Plug 'iberianpig/tig-explorer.vim', {'as': 'tig-explorer'}
 Plug 'junegunn/fzf', {'as': 'fzf', 'dir': '~/.vim/plugged/fzf/fzf'}
 Plug 'junegunn/fzf.vim', {'as': 'fzf.vim', 'dir': '~/.vim/plugged/fzf/fzf.vim'}
 Plug 'neoclide/coc.nvim', {'as': 'coc', 'do': 'yarn install --frozen-lockfile'}
@@ -388,7 +389,7 @@ nmap <Leader>` ysiw`
 nmap <Leader>* ysiw*
 
 " ================================================================================
-" ALE配置
+" Ale配置
 " ================================================================================
 let g:ale_c_parse_makefile = 1
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
@@ -397,10 +398,16 @@ nmap sp <Plug>(ale_previous_wrap)
 nmap sn <Plug>(ale_next_wrap)
 
 " ================================================================================
-" FZF 配置
+" Fzf 配置
 " ================================================================================
 nnoremap <C-s> :Rg<CR>
 nnoremap <C-p> :Files<CR>
+
+" ================================================================================
+" Tig 配置
+" ================================================================================
+nnoremap <Leader>T :TigOpenCurrentFile<CR>
+nnoremap <Leader>t :TigOpenProjectRootDir<CR>
 
 " ================================================================================
 " UltiSnips配置

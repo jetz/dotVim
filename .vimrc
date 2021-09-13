@@ -214,43 +214,18 @@ nnoremap <silent> <M-r> :call RunCode()<CR>
 " 清除高亮显示
 nnoremap <silent> <M-n> :silent noh<CR>
 " 读取配置文件
-nnoremap <silent> <leader>ev :e $MYVIMRC<CR>
+nnoremap <silent> <Leader>ev :e $MYVIMRC<CR>
 " 重新读取配置文件
-nnoremap <silent> <leader>sv :source $MYVIMRC<CR>
+nnoremap <silent> <Leader>sv :source $MYVIMRC<CR>
 
 " 分屏
-nnoremap <silent> <leader>- :split<CR>
-nnoremap <silent> <leader>\ :vsplit<CR>
-
-" 使用符号包围光标下面的字(中文多字)
-nnoremap <leader>" viw<ESC>`<i"<ESC>`>a"<ESC>h
-nnoremap <leader>' viw<ESC>`<i'<ESC>`>a'<ESC>h
-nnoremap <leader>* viw<ESC>`<i*<ESC>`>a*<ESC>h
-nnoremap <leader>< viw<ESC>`<i<<ESC>`>a><ESC>h
-nnoremap <leader>( viw<ESC>`<i(<ESC>`>a)<ESC>h
-nnoremap <leader>[ viw<ESC>`<i[<ESC>`>a]<ESC>h
-nnoremap <leader>{ viw<ESC>`<i{<ESC>`>a}<ESC>h
-" 使用符号包围光标下面的单个汉字
-nnoremap <leader>;" a"<ESC>hi"<ESC>e
-nnoremap <leader>;' a'<ESC>hi'<ESC>e
-nnoremap <leader>;* a*<ESC>hi*<ESC>e
-nnoremap <leader>;< a><ESC>hi<<ESC>e
-nnoremap <leader>;( a)<ESC>hi(<ESC>e
-nnoremap <leader>;[ a]<ESC>hi[<ESC>e
-nnoremap <leader>;{ a}<ESC>hi{<ESC>e
-" 使用符号包围选择的字符
-vnoremap <leader>" <ESC>`<i"<ESC>`>a"<ESC>
-vnoremap <leader>' <ESC>`<i'<ESC>`>a'<ESC>
-vnoremap <leader>* <ESC>`<i*<ESC>`>a*<ESC>
-vnoremap <leader>< <ESC>`<i<<ESC>`>a><ESC>
-vnoremap <leader>( <ESC>`<i(<ESC>`>a)<ESC>
-vnoremap <leader>[ <ESC>`<i[<ESC>`>a]<ESC>
-vnoremap <leader>{ <ESC>`<i{<ESC>`>a}<ESC>
+nnoremap <silent> <Leader>- :split<CR>
+nnoremap <silent> <Leader>\ :vsplit<CR>
 
 " 用空格键来开关折叠
 nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
 " 将查找出来的所有结果显示在单独的窗口中，双击该行就能定位到文件中的相应行
-nnoremap <leader>/ :exec 'lvimgrep /' . input('/', expand('<cword>')) . '/j % <bar> lopen'<CR>
+nnoremap <Leader>/ :exec 'lvimgrep /' . input('/', expand('<cword>')) . '/j % <bar> lopen'<CR>
 
 " 把JJ映射成退出插入模式
 inoremap jj <ESC>
@@ -269,14 +244,14 @@ cnoremap <C-p> <up>
 cnoremap W<CR> w !sudo tee %<CR>
 
 " 复制系统剪贴板内容到命令行
-cnoremap <leader>p <C-R>+
+cnoremap <Leader>p <C-R>+
 
 " 复制系统剪贴板内容到编辑器中
-nnoremap <leader>p "+p
+nnoremap <Leader>p "+p
 " normal模式下复制当前行内容到系统剪贴板
-nnoremap <leader>y "+yy
+nnoremap <Leader>y "+yy
 " visual模式下复制当前选定内容到系统剪贴板
-vnoremap <leader>y "+y
+vnoremap <Leader>y "+y
 
 " ================================================================================
 " 键简写设置
@@ -339,13 +314,13 @@ let g:airline#extensions#ale#enabled = 1
 " ================================================================================
 " NERDTree配置
 " ================================================================================
-nnoremap <silent> <leader>1 :NERDTreeToggle<CR>
+nnoremap <silent> <Leader>1 :NERDTreeToggle<CR>
 let NERDTreeIgnore=['\~$', '\.pyc$', '\.o$', '\.exe$', '^__pycache__$[[dir]]', '^node_modules$[[dir]]']
 
 " ================================================================================
 " Tagbar配置
 " ================================================================================
-nnoremap <silent> <leader>0 :TagbarToggle<CR>
+nnoremap <silent> <Leader>0 :TagbarToggle<CR>
 let g:tagbar_width = 30
 
 " ================================================================================
@@ -373,9 +348,9 @@ let g:formatters_markdown = ['remark_markdown']
 " ================================================================================
 " EasyMotion配置
 " ================================================================================
-nnoremap <leader>f <Plug>(easymotion-f)
-nnoremap <leader>F <Plug>(easymotion-F)
-nnoremap <leader>s <Plug>(easymotion-s)
+nmap <Leader>f <Plug>(easymotion-f)
+nmap <Leader>F <Plug>(easymotion-F)
+nmap <Leader>s <Plug>(easymotion-s)
 
 let g:EasyMotion_smartcase = 1
 
@@ -385,13 +360,41 @@ let g:EasyMotion_smartcase = 1
 let NERDMapleader = ';c'
 
 " ================================================================================
+" Surround配置
+" ================================================================================
+xmap { S{
+xmap } S}
+xmap [ S[
+xmap ] S]
+xmap ( S(
+xmap ) S)
+xmap < S<
+xmap > S>
+xmap " S"
+xmap ' S'
+xmap ` S`
+xmap * S*
+nmap <Leader>{ ysiw{
+nmap <Leader>} ysiw}
+nmap <Leader>[ ysiw[
+nmap <Leader>] ysiw]
+nmap <Leader>( ysiw(
+nmap <Leader>) ysiw)
+nmap <Leader>< ysiw<
+nmap <Leader>> ysiw>
+nmap <Leader>" ysiw"
+nmap <Leader>' ysiw'
+nmap <Leader>` ysiw`
+nmap <Leader>* ysiw*
+
+" ================================================================================
 " ALE配置
 " ================================================================================
 let g:ale_c_parse_makefile = 1
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 
-nnoremap sp <Plug>(ale_previous_wrap)
-nnoremap sn <Plug>(ale_next_wrap)
+nmap sp <Plug>(ale_previous_wrap)
+nmap sn <Plug>(ale_next_wrap)
 
 " ================================================================================
 " FZF 配置
@@ -445,7 +448,7 @@ augroup _FT_PYTHON
     autocmd!
     " 行尾添加 #noqa
     autocmd FileType python setlocal ts=4
-    autocmd FileType python nnoremap <buffer> <leader>nq :exec "norm! A # noqa"<CR>
+    autocmd FileType python nnoremap <buffer> <Leader>nq :exec "norm! A # noqa"<CR>
 augroup END
 
 " ================================================================================

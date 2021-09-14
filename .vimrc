@@ -335,7 +335,6 @@ nnoremap <silent> <M-l> :BufExplorer<CR>
 " AutoFormat配置
 " ================================================================================
 nnoremap <silent> <M-q> :Autoformat<CR>
-vnoremap <silent> <M-q> :Autoformat<CR>
 
 let g:formatters_python = ['black']
 let g:formatters_go = ['gofmt_1', 'goimports']
@@ -365,18 +364,18 @@ let NERDMapleader = ';c'
 " ================================================================================
 " Surround配置
 " ================================================================================
-xmap { S{
-xmap } S}
-xmap [ S[
-xmap ] S]
-xmap ( S(
-xmap ) S)
-xmap < S<
-xmap > S>
-xmap " S"
-xmap ' S'
-xmap ` S`
-xmap * S*
+xmap <Leader>{ S{
+xmap <Leader>} S}
+xmap <Leader>[ S[
+xmap <Leader>] S]
+xmap <Leader>( S(
+xmap <Leader>) S)
+xmap <Leader>< S<
+xmap <Leader>> S>
+xmap <Leader>" S"
+xmap <Leader>' S'
+xmap <Leader>` S`
+xmap <Leader>* S*
 nmap <Leader>{ ysiw{
 nmap <Leader>} ysiw}
 nmap <Leader>[ ysiw[
@@ -466,4 +465,9 @@ augroup END
 augroup _FT_GO
     autocmd!
     autocmd FileType go setlocal ts=4
+    autocmd FileType go nmap gtj :CocCommand go.tags.add json<CR>
+    autocmd FileType go nmap gty :CocCommand go.tags.add yaml<CR>
+    autocmd FileType go nmap gtt :CocCommand go.tags.add toml<CR>
+    autocmd FileType go nmap gtx :CocCommand go.tags.clear<CR>
+    autocmd BufWritePre *.go :silent call CocAction('runCommand', 'editor.action.organizeImport')
 augroup END

@@ -217,6 +217,8 @@ nnoremap <silent> <M-n> :silent noh<CR>
 nnoremap <silent> <Leader>ev :e $MYVIMRC<CR>
 " 重新读取配置文件
 nnoremap <silent> <Leader>sv :source $MYVIMRC<CR>
+" 打开terminal
+nnoremap <silent> <Leader>t :terminal<CR>
 
 " 分屏
 nnoremap <silent> <Leader>- :split<CR>
@@ -406,8 +408,8 @@ nnoremap <C-p> :Files<CR>
 " ================================================================================
 " Tig 配置
 " ================================================================================
-nnoremap <Leader>T :TigOpenCurrentFile<CR>
-nnoremap <Leader>t :TigOpenProjectRootDir<CR>
+nnoremap <Leader>G :TigOpenCurrentFile<CR>
+nnoremap <Leader>g :TigOpenProjectRootDir<CR>
 
 " ================================================================================
 " UltiSnips配置

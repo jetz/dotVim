@@ -432,6 +432,11 @@ let g:coc_global_extensions = [
             \ "coc-yaml",
             \ "coc-vimlsp"]
 
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
 " ================================================================================
 " Markdown相关配置
 " ================================================================================
@@ -468,6 +473,7 @@ augroup _FT_GO
     autocmd FileType go nmap gtj :CocCommand go.tags.add json<CR>
     autocmd FileType go nmap gty :CocCommand go.tags.add yaml<CR>
     autocmd FileType go nmap gtt :CocCommand go.tags.add toml<CR>
+    autocmd FileType go nmap gtg :CocCommand go.tags.add gorm<CR>
     autocmd FileType go nmap gtx :CocCommand go.tags.clear<CR>
     autocmd BufWritePre *.go :silent call CocAction('runCommand', 'editor.action.organizeImport')
 augroup END
